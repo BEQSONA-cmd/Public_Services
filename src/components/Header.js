@@ -161,7 +161,7 @@ export default function Header() {
                         <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
                             Search Options
                         </h2>
-                        <form className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[500px] overflow-auto">
+                        <form className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[500px] overflow-auto custom-scrollbar">
                             <Inputs />
 
                             <div className="col-span-1 md:col-span-2">
