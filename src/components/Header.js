@@ -4,16 +4,6 @@ import { useState } from "react";
 const Inputs = () => {
     const inputs = [
         {
-            label: "Document Number",
-            type: "text",
-            placeholder: "Document Number",
-        },
-        {
-            label: "Private Number",
-            type: "text",
-            placeholder: "Private Number",
-        },
-        {
             label: "Name",
             type: "text",
             placeholder: "Name",
@@ -22,6 +12,16 @@ const Inputs = () => {
             label: "Last Name",
             type: "text",
             placeholder: "Last Name",
+        },
+        {
+            label: "Document Number",
+            type: "text",
+            placeholder: "Document Number",
+        },
+        {
+            label: "Private Number",
+            type: "text",
+            placeholder: "Private Number",
         },
         {
             label: "Birth Date",
@@ -33,14 +33,65 @@ const Inputs = () => {
             type: "select",
             options: ["Pick Region", "Imereti", "Achara", "Guria", "Samegrelo"],
         },
+        {
+            label: "Pick City",
+            type: "select",
+            options: ["Pick City", "Kutaisi", "Batumi", "Tbilisi", "Zugdidi"],
+        },
+        {
+            label: "Document Type",
+            type: "select",
+            options: ["Document to be issued", "External Service"],
+        },
+        {
+            label: "User Type",
+            type: "select",
+            options: [
+                "Standart User",
+                "Student",
+                "Pensioner",
+                "Disabled Person",
+            ],
+        },
+        {
+            label: "Issuance Type",
+            type: "select",
+            options: ["Issuance From", "Post", "External Service"],
+        },
+        {
+            label: "Courier",
+            type: "select",
+            options: ["All", "Courier 1", "Courier 2", "Courier 3"],
+        },
+        {
+            label: "Issuance Time",
+            type: "select",
+            options: [
+                "Same Day",
+                "24 Hours",
+                "3 Working Day",
+                "5 Working Day",
+                "10 Workin Day",
+            ],
+        },
+        {
+            label: "From",
+            type: "date",
+            placeholder: "From Date",
+        },
+        {
+            label: "Until",
+            type: "date",
+            placeholder: "Until Date",
+        },
     ];
 
     return inputs.map((input, index) => {
         if (input.type === "select") {
             return (
-                <label className="block">
+                <label className="block" key={index}>
                     {input.label}
-                    <select className="w-full mt-1 px-3 py-3 border rounded-lg dark:border-gray-700 dark:bg-gray-900">
+                    <select name={input.label} className="w-full mt-1 px-3 py-3 border rounded-lg dark:border-gray-700 dark:bg-gray-900">
                         {input.options.map((option, index) => {
                             return <option key={index}>{option}</option>;
                         })}
@@ -50,9 +101,10 @@ const Inputs = () => {
         }
 
         return (
-            <label className="block">
+            <label className="block" key={index}>
                 {input.label}
                 <input
+                    name={input.label}
                     type={input.type}
                     placeholder={input.placeholder}
                     className="w-full mt-1 px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-900"
@@ -109,12 +161,12 @@ export default function Header() {
                         <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
                             Search Options
                         </h2>
-                        <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <form className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[500px] overflow-auto">
                             <Inputs />
 
                             <div className="col-span-1 md:col-span-2">
                                 <button
-                                    type="button"
+                                    type="submit"
                                     className="w-full bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-purple-700 transform hover:scale-105 transition duration-300"
                                 >
                                     Search
