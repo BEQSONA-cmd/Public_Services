@@ -1,33 +1,205 @@
-export default function FilterContainer() {
-    return (
-      <section className="w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-        <h2 className="text-lg font-bold mb-4">Filters</h2>
-        <form className="grid grid-cols-2 gap-4">
-          <div>
-            <label htmlFor="region" className="block text-sm font-medium">
-              Region
-            </label>
-            <select
-              id="region"
-              className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
-            >
-              <option value="">All</option>
-              <option value="Imereti">Imereti</option>
-              <option value="Achara">Achara</option>
-              <option value="Guria">Guria</option>
-            </select>
-          </div>
-          {/* Add other filters in the same way */}
-          <div className="col-span-2">
-            <button
-              type="button"
-              className="w-full bg-purple-600 text-white py-2 rounded-lg hover:bg-purple-700"
-            >
-              Apply Filters
-            </button>
-          </div>
-        </form>
-      </section>
+
+const Inputs_EN = ({onChange}) => {
+  const inputs = [
+      {
+          label: "Document Number",
+          type: "text",
+          placeholder: "Document Number",
+      },
+      {
+          label: "Private Number",
+          type: "text",
+          placeholder: "Private Number",
+      },
+      {
+          label: "Name",
+          type: "text",
+          placeholder: "Name",
+      },
+      {
+          label: "Surname",
+          type: "text",
+          placeholder: "Surname",
+      },
+      {
+          label: "Region",
+          type: "select",
+          options: [
+              "Select Region",
+              "Imereti",
+              "Achara",
+              "Guria",
+              "Samegrelo",
+          ],
+      },
+      {
+          label: "City",
+          type: "select",
+          options: [
+              "Select City",
+              "Kutaisi",
+              "Batumi",
+              "Tbilisi",
+              "Zugdidi",
+          ],
+      },
+      {
+          label: "Document Type",
+          type: "select",
+          options: ["Internal Document", "Foreign Service"],
+      },
+      {
+          label: "User Type",
+          type: "select",
+          options: [
+              "All",
+              "Standart User",
+              "Student",
+              "Pensioner",
+              "Disabled Person",
+          ],
+      },
+  ];
+
+  return inputs.map((input, index) => {
+
+      if(input.type === "select"){
+          return (
+              <label key={index} className="block text-sm font-medium">
+                  {input.label}
+                  <select
+                      onChange={(e) => onChange(input.label.toLowerCase().replace(" ","_"), e.target.value)}
+                      className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
+                  >
+                      {input.options.map((option, index) => (
+                          <option key={index}>{option}</option>
+                      ))}
+                  </select>
+              </label>
+          );
+      }
+
+      return (
+          <label key={index} className="block text-sm font-medium">
+              {input.label}
+              <input
+                  onChange={(e) => onChange(input.label.toLowerCase().replace(" ","_"), e.target.value)}
+                  type={input.type}
+                  className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
+                  placeholder={input.placeholder}
+              />
+          </label>
+      );
+  });
+};
+
+const Inputs_GE = ({onChange}) => {
+    const inputs = [
+        {
+            label: "დოკუმენტის ნომერი",
+            type: "text",
+            placeholder: "დოკუმენტის ნომერი",
+        },
+        {
+            label: "პირადი ნომერი",
+            type: "text",
+            placeholder: "პირადი ნომერი",
+        },
+        {
+            label: "სახელი",
+            type: "text",
+            placeholder: "სახელი",
+        },
+        {
+            label: "გვარი",
+            type: "text",
+            placeholder: "გვარი",
+        },
+        {
+            label: "რეგიონი",
+            type: "select",
+            options: [
+                "აირი",
+                "აჭარა",
+                "გურია",
+                "სამეგრელო",
+            ],
+        },
+        {
+            label: "ქალაქი",
+            type: "select",
+            options: [
+                "ქუთაისი",
+                "ბათუმი",
+                "თბილისი",
+                "ზუგდიდი",
+            ],
+        },
+        {
+            label: "დოკუმენტის ტიპი",
+            type: "select",
+            options: ["გასაცემი დოკუმენტი", "გარე მომსახურეობა"],
+        },
+        {
+            label: "მომხმარებლის ტიპი",
+            type: "select",
+            options: [
+                "ყველა",
+                "სტანდარტული მომხმარებელი",
+                "სტუდენტი",
+                "პატიმარი",
+                "შშმ პირი",
+            ],
+        },
+    ];
+
+    return inputs.map((input, index) => {
+            
+            if(input.type === "select"){
+                return (
+                    <label key={index} className="block text-sm font-medium">
+                        {input.label}
+                        <select
+                            onChange={(e) => onChange(input.label.toLowerCase().replace(" ","_"), e.target.value)}
+                            className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
+                        >
+                            {input.options.map((option, index) => (
+                                <option key={index}>{option}</option>
+                            ))}
+                        </select>
+                    </label>
+                );
+            }
+    
+            return (
+                <label key={index} className="block text-sm font-medium">
+                    {input.label}
+                    <input
+                        onChange={(e) => onChange(input.label.toLowerCase().replace(" ","_"), e.target.value)}
+                        type={input.type}
+                        className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
+                        placeholder={input.placeholder}
+                    />
+                </label>
+            );
+        }
     );
+}
+
+
+export default function FilterContainer({ onFilterChange , lang }) {
+  const handleInputChange = (key, value) => {
+      if(value === "Select Region" || value === "Select City" || value === "All") value = "";
+
+      onFilterChange((prev) => ({ ...prev, [key]: value }));
   }
-  
+
+  return (
+      <section className="w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+          <h2 className="text-lg font-bold mb-4">Filters</h2>
+          <form className="grid grid-cols-4 gap-4">
+                {lang === "EN" ? <Inputs_EN onChange={handleInputChange} /> : <Inputs_GE onChange={handleInputChange} />}
+          </form>
+      </section>
+  );
+}
