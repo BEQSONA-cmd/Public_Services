@@ -14,7 +14,7 @@ export default function Header() {
     return (
         <div>
             {/* Header */}
-            <header className="flex justify-between items-center bg-white dark:bg-gray-800 p-4 shadow-md w-full">
+            <header className="flex justify-between items-center bg-white dark:bg-gray-800 p-4 shadow-md w-full border-b border-black">
                 <div className="flex items-center">
                     <a href="/" className="flex items-center space-x-2">
                         <img src="/image.png" alt="Logo" className="h-14 w-1000" />
