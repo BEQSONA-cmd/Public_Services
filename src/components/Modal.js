@@ -1,6 +1,9 @@
 import React from 'react';
 
-export default function FilterModal({ isModalOpen, closeFilterModal, Inputs }) {
+export default function FilterModal({ isModalOpen, closeFilterModal, Inputs , lang }) {
+
+    lang === "Ge" ? console.log("დეტალური ძებნა") : console.log("Search Options");
+
     if (!isModalOpen) return null;
     return (
         <div
@@ -16,8 +19,7 @@ export default function FilterModal({ isModalOpen, closeFilterModal, Inputs }) {
                     &times; {/* Close Icon */}
                 </button>
                 <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-100">
-                    {/* დეტალური ძებნა or Search Options */}
-                    Search Options
+                    {lang === "EN" ? "Search Options" : "დეტალური ძებნა"}
                 </h2>
                 <form className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[500px] overflow-auto custom-scrollbar">
                     <Inputs />
@@ -27,8 +29,7 @@ export default function FilterModal({ isModalOpen, closeFilterModal, Inputs }) {
                             type="submit"
                             className="w-full bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:bg-purple-700 transform hover:scale-105 transition duration-300"
                         >
-                            {/* ძებნა or Search */}
-                            Search
+                            {lang === "EN" ? "Search" : "ძებნა"}
                         </button>
                     </div>
                 </form>

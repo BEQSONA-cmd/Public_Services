@@ -267,7 +267,7 @@ export default function Header() {
             <header className="flex justify-between items-center bg-white dark:bg-gray-800 p-4 shadow-md w-full">
                 <div className="flex items-center">
                     <a href="/" className="flex items-center space-x-2">
-                        <img src="/image.png" alt="Logo" className="h-14" />
+                        <img src="/image.png" alt="Logo" className="h-14 w-1000" />
                     </a>
                 </div>
                 <div className="relative flex gap-4">
@@ -297,6 +297,7 @@ export default function Header() {
                 isModalOpen={isModalOpen}
                 closeFilterModal={closeFilterModal}
                 Inputs={Inputs}
+                lang={lang}
             />
         </div>
     );
