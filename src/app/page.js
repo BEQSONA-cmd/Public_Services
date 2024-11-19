@@ -58,7 +58,10 @@ export default function Home() {
                     onFilterChange={handleFilterChange} 
                     lang={lang}
                 />
-                <DataTable data={filteredData} />
+                <DataTable 
+                    data={filteredData} 
+                    lang={lang}
+                    />
             </div>
         </div>
     );
