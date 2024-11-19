@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "@/components/Body/DataTable";
 import { useLanguage } from "@/components/contexts/LanguageContext.js";
+import { useFilter } from "@/components/contexts/UseFilter.js";
 import FilterContainer from "@/components/Body/FilterContainer";
 
 const data = [];
@@ -23,30 +24,7 @@ for(var i = 0; i < 10; i++)
 
 export default function Home() {
     const { lang } = useLanguage();
-    const [filters, setFilters] = useState({ region: "", name: "", surname: "", city: "", user_type: "" });
-    const [filteredData, setFilteredData] = useState([]);
-
-    const handleFilterChange = (newFilters) => {
-        setFilters(newFilters);
-    };
-
-    useEffect(() => {
-        setFilteredData(
-            data.filter((item) => {
-
-                const name = item.name.toLowerCase();
-
-                return (
-                    (filters.name === "" || name.includes(filters.name.toLowerCase())) &&
-                    (filters.surname === "" || item.surname === filters.surname) &&
-                    (filters.region === "" || item.region === filters.region) &&
-                    (filters.city === "" || item.city === filters.city) &&
-                    (filters.user_type === "" || item.user_type === filters.user_type)
-                );
-                
-            })
-        );
-    }, [filters]);
+    const { updateFilters, filteredData } = useFilter(data);
 
     return (
         <div className="min-h-screen p-6 bg-gray-100 dark:bg-gray-900 flex justify-center">
@@ -55,7 +33,7 @@ export default function Home() {
                     {lang === "EN" ? "Public Services" : "სახელმწიფო სერვისები"}
                 </h1>
                 <FilterContainer 
-                    onFilterChange={handleFilterChange} 
+                    onFilterChange={updateFilters}
                     lang={lang}
                 />
                 <DataTable 
