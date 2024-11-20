@@ -1,6 +1,6 @@
 
 import { toGE, toEN} from "../contexts/LanguageContext";
-import React from "react";
+import React, { useState } from "react";
 
 const columns_GE = () => {
     const columns = [
@@ -66,7 +66,7 @@ const columns_EN = () => {
             type: "text",
         },
         {
-            label: "Last Name",
+            label: "Surname",
             type: "text",
         },
         {
@@ -96,7 +96,12 @@ const columns_EN = () => {
 const times_EN = ["Issued in 1 day", "Issued in 3 days", "Issued in 10 days"];
 const times_GE = ["1 დღეში გასაცემი", "3 დღეში გასაცემი", "10 დღეში გასაცემი"];
 
-export default function DataTable({ data , lang}) {
+const rowsPerPage = 24;
+const maxPageButtons = 5;
+
+export default function DataTable({ data, lang }) {
+    const [currentPage, setCurrentPage] = useState(1);
+
     const groupDataByTime = (data) => {
         const grouped = {};
         times_EN.forEach((time) => {
@@ -104,8 +109,41 @@ export default function DataTable({ data , lang}) {
         });
         return grouped;
     };
-    
+
     const groupedData = groupDataByTime(data);
+
+    const flattenData = () => {
+        return Object.values(groupedData).flat();
+    };
+
+    const paginatedData = () => {
+        const totalData = flattenData();
+        const startIndex = (currentPage - 1) * rowsPerPage;
+        const endIndex = startIndex + rowsPerPage;
+        return totalData.slice(startIndex, endIndex);
+    };
+
+    const totalDataCount = flattenData().length;
+    const totalPages = Math.ceil(totalDataCount / rowsPerPage);
+
+    const getPaginationButtons = () => {
+        const buttons = [];
+        const startPage = Math.max(1, currentPage - Math.floor(maxPageButtons / 2));
+        const endPage = Math.min(totalPages, startPage + maxPageButtons - 1);
+
+        for (let i = startPage; i <= endPage; i++) {
+            buttons.push(i);
+        }
+
+        return {
+            buttons,
+            hasPreviousGroup: startPage > 1,
+            hasNextGroup: endPage < totalPages,
+        };
+    };
+
+    const { buttons, hasPreviousGroup, hasNextGroup } = getPaginationButtons();
+
     return (
         <section className="w-full overflow-x-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
             <table className="w-full table-auto border-collapse mb-4">
@@ -116,7 +154,8 @@ export default function DataTable({ data , lang}) {
                 </thead>
                 <tbody>
                     {Object.keys(groupedData).map((time) => {
-                        if (!groupedData[time] || groupedData[time].length === 0) {
+                        const dataForTime = paginatedData().filter((item) => item.time === time);
+                        if (!dataForTime.length) {
                             return null;
                         }
 
@@ -130,7 +169,7 @@ export default function DataTable({ data , lang}) {
                                         {lang === "EN" ? time : times_GE[times_EN.indexOf(time)]}
                                     </td>
                                 </tr>
-                                {groupedData[time].map((item, index) => (
+                                {dataForTime.map((item, index) => (
                                     <tr key={index} className="bg-white dark:bg-gray-800">
                                         <td className="px-4 py-2 border dark:border-gray-700">
                                             {item.recieve}
@@ -145,10 +184,10 @@ export default function DataTable({ data , lang}) {
                                             {item.private_number}
                                         </td>
                                         <td className="px-4 py-2 border dark:border-gray-700">
-                                            {item.name}
+                                            {item.surname}
                                         </td>
                                         <td className="px-4 py-2 border dark:border-gray-700">
-                                            {item.surname}
+                                            {item.name}
                                         </td>
                                         <td className="px-4 py-2 border dark:border-gray-700">
                                             {lang === "EN" ? item.city : toGE(item.city)}
@@ -163,6 +202,55 @@ export default function DataTable({ data , lang}) {
                     })}
                 </tbody>
             </table>
+
+            {/* Pagination Controls */}
+            <div className="flex justify-center mt-4">
+                {hasPreviousGroup && (
+                    <button
+                        className="mx-1 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                        onClick={() => setCurrentPage(1)}
+                    >
+                        1
+                    </button>
+                )}
+                {hasPreviousGroup && (
+                    <button
+                        className="mx-1 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                        onClick={() => setCurrentPage((prev) => Math.max(prev - maxPageButtons, 1))}
+                    >
+                        {"<<"}
+                    </button>
+                )}
+                {buttons.map((page) => (
+                    <button
+                        key={page}
+                        className={`mx-1 px-3 py-1 rounded-md ${
+                            currentPage === page
+                                ? "bg-blue-500 text-white"
+                                : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                        }`}
+                        onClick={() => setCurrentPage(page)}
+                    >
+                        {page}
+                    </button>
+                ))}
+                {hasNextGroup && (
+                    <button
+                        className="mx-1 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                        onClick={() => setCurrentPage((prev) => Math.min(prev + maxPageButtons, totalPages))}
+                    >
+                        {">>"}
+                    </button>
+                )}
+                {hasNextGroup && (
+                    <button
+                        className="mx-1 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                        onClick={() => setCurrentPage(totalPages)}
+                    >
+                        {totalPages}
+                    </button>
+                )}
+            </div>
         </section>
     );
 }

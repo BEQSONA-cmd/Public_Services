@@ -11,13 +11,12 @@ const cities = ["Tbilisi", "Kutaisi", "Batumi", "Zugdidi"];
 const statuses = ["Standart User", "Student", "Prisoner", "Disabled Person"];
 const times = ["Issued in 1 day", "Issued in 3 days", "Issued in 10 days"];
 
-    
-for (let i = 0; i < 24; i++) {
+for (let i = 0; i < 1000; i++) {
     const random11DigitString = () => Math.floor(10000000000 + Math.random() * 90000000000).toString();
-
+    const ran = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
     data.push({
-        recieve: `2024-11-${String(i + 1).padStart(2, "0")}`,
-        sent: `2024-11-${String(i + 1).padStart(2, "0")}`,
+        recieve: `2024-${ran(1, 12)}-${ran(1, 28)}`,
+        sent: `2024-${ran(1, 12)}-${ran(1, 28)}`,
         document_number: random11DigitString(),
         private_number: random11DigitString(),
         name: `Name ${i + 1}`,
@@ -27,8 +26,6 @@ for (let i = 0; i < 24; i++) {
         time: times[Math.floor(Math.random() * times.length)]
     });
 }
-
-
 
 export default function Home() {
     const { lang } = useLanguage();

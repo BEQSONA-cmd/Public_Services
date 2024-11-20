@@ -21,6 +21,8 @@ export const useLanguage = () => useContext(LanguageContext);
 
 export function toGE (string) {
   switch (string) {
+    case "document_number": return "საბუთის_ნომერი";
+    case "private_number": return "პირადი_ნომერი";
     case "Standart User": return "სტანდარტული მომხმარებელი";
     case "Student": return "სტუდენტი";
     case "Prisoner": return "პატივი";
@@ -30,9 +32,9 @@ export function toGE (string) {
       case "Issued in 10 days": return "10 დღეში გასაცემი";
       case "Receive": return "მიღება";
       case "Sent": return "გაგზავნა";
-      case "Document Number": return "დოკუმენტის ნომერი";
+      case "Document Number": return "საბუთის ნომერი";
       case "Private Number": return "პირადი ნომერი";
-      case "Last Name": return "გვარი";
+      case "Surname": return "გვარი";
       case "Name": return "სახელი";
       case "Status": return "სტატუსი";
       case "Region": return "რეგიონი";
@@ -53,6 +55,8 @@ export function toGE (string) {
 
 export function toEN (string) {
   switch (string) {
+    case "საბუთის_ნომერი": return "document_number";
+    case "პირადი_ნომერი": return "private_number";
     case "სტანდარტული მომხმარებელი": return "Standart User";
     case "სტუდენტი": return "Student";
     case "პატივი": return "Prisoner";
@@ -62,9 +66,9 @@ export function toEN (string) {
       case "10 დღეში გასაცემი": return "Issued in 10 days";
       case "მიღება": return "Receive";
       case "გაგზავნა": return "Sent";
-      case "დოკუმენტის ნომერი": return "Document Number";
+      case "საბუთის ნომერი": return "Document Number";
       case "პირადი ნომერი": return "Private Number";
-      case "გვარი": return "Last Name";
+      case "გვარი": return "Surname";
       case "სახელი": return "Name";
       case "სტატუსი": return "Status";
       case "რეგიონი": return "Region";

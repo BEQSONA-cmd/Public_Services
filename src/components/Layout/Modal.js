@@ -140,9 +140,9 @@ const Inputs_EN = () => {
             placeholder: "Name",
         },
         {
-            label: "Last Name",
+            label: "Surname",
             type: "text",
-            placeholder: "Last Name",
+            placeholder: "Surname",
         },
         {
             label: "Document Number",

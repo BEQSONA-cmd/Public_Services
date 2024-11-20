@@ -1,9 +1,11 @@
+import { toEN } from "../contexts/LanguageContext";
+
 const Inputs_GE = ({onChange}) => {
     const inputs = [
         {
             label: "საბუთის ნომერი",
             type: "text",
-            placeholder: "დოკუმენტის ნომერი",
+            placeholder: "საბუთის ნომერი",
         },
         {
             label: "პირადი ნომერი",
@@ -157,20 +159,19 @@ const Inputs_EN = ({onChange}) => {
 
 export default function FilterContainer({ onFilterChange , lang }) 
 {
-  const handleInputChange = (key, value) => {
-    if(lang == "EN"){
+
+    const handleInputChange = (key, value) => {
+      if(lang == "GE")
+      {
+          key = toEN(key);
+          value = toEN(value);
+          key = key.toLowerCase();
+      }
+        console.log(key, value);
       if(value === "Select Region" || value === "Select City" ) value = "";
 
       onFilterChange((prev) => ({ ...prev, [key]: value }));
-    }
-    else
-    {
-        console.log(key);
-      if(value === "აირჩიე რეგიონი" || value === "აირჩიე ქალაქი" ) value = "";
-      onFilterChange((prev) => ({ ...prev, [key]: value }));
-    }
   }
-
 
   return (
       <section className="w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
