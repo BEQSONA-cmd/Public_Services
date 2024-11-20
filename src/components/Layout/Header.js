@@ -2,14 +2,15 @@
 import FilterModal from "./Modal.js";
 import { useState } from "react";
 import { useLanguage } from "../contexts/LanguageContext.js";
+import { useData } from "../contexts/DataContext.js";
 
 const cities = ["Tbilisi", "Kutaisi", "Batumi", "Zugdidi"];
 const statuses = ["Standart User", "Student", "Prisoner", "Disabled Person"];
 const times = ["Issued in 1 day", "Issued in 3 days", "Issued in 10 days"];
 
-function Set_Data(data, num) 
+function Generate_Data(num) 
 {
-  data.length = 0;
+  const data = [];
   for (let i = 0; i < num; i++) {
     const random11DigitString = () => Math.floor(10000000000 + Math.random() * 90000000000).toString();
     const ran = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
@@ -25,9 +26,11 @@ function Set_Data(data, num)
       time: times[Math.floor(Math.random() * times.length)]
     });
   }
+  return data;
 }
 
 export default function Header( ) {
+  const { updateData } = useData();
   const { lang, toggleLanguage } = useLanguage();
   const [isModalOpen, setModalOpen] = useState(false);
   const [numRecords, setNumRecords] = useState(0);
@@ -35,8 +38,8 @@ export default function Header( ) {
   const openFilterModal = () => setModalOpen(true);
   const closeFilterModal = () => setModalOpen(false);
   const handleGenerateData = () => {
-    console.log("generated data" + numRecords);
-    Set_Data(data, numRecords);
+    const data = Generate_Data(numRecords);
+    updateData(data);
   };
 
   return (

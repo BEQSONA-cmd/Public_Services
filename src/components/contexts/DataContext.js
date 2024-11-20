@@ -1,24 +1,22 @@
-import React, { createContext, useContext } from "react";
-import { useState } from "react";
+"use client";
+import React, { createContext, useState, useContext } from "react";
 
-// Create the context
 const DataContext = createContext();
 
-
 export function DataProvider({ children }) {
-    const [data, setData] = useState([]);
-  
-    return (
-      <DataContext.Provider value={{ data, setData }}>
-        {children}
-      </DataContext.Provider>
-    );
-  }
+  const [data, setData] = useState([]);
 
-export const useData = () => {
-  const context = useContext(DataContext);
-  if (context === undefined) {
-    throw new Error("useData must be used within a DataProvider");
-  }
-  return context;
-};
+  const updateData = (newData) => {
+    setData(newData);
+  };
+
+  return (
+    <DataContext.Provider value={{ data, updateData }}>
+      {children}
+    </DataContext.Provider>
+  );
+}
+
+export function useData() {
+  return useContext(DataContext);
+}
