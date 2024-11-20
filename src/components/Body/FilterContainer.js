@@ -1,7 +1,7 @@
 const Inputs_GE = ({onChange}) => {
     const inputs = [
         {
-            label: "დოკუმენტის ნომერი",
+            label: "საბუთის ნომერი",
             type: "text",
             placeholder: "დოკუმენტის ნომერი",
         },
@@ -155,12 +155,22 @@ const Inputs_EN = ({onChange}) => {
   });
 };
 
-export default function FilterContainer({ onFilterChange , lang }) {
+export default function FilterContainer({ onFilterChange , lang }) 
+{
   const handleInputChange = (key, value) => {
-      if(value === "Select Region" || value === "Select City" || value === "All") value = "";
+    if(lang == "EN"){
+      if(value === "Select Region" || value === "Select City" ) value = "";
 
       onFilterChange((prev) => ({ ...prev, [key]: value }));
+    }
+    else
+    {
+        console.log(key);
+      if(value === "აირჩიე რეგიონი" || value === "აირჩიე ქალაქი" ) value = "";
+      onFilterChange((prev) => ({ ...prev, [key]: value }));
+    }
   }
+
 
   return (
       <section className="w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
@@ -168,8 +178,10 @@ export default function FilterContainer({ onFilterChange , lang }) {
           >
                 {lang === "EN" ? "Filter" : "ფილტრი"}
             </h2>
-          <form className="grid grid-cols-4 gap-4">
-                {lang === "EN" ? <Inputs_EN onChange={handleInputChange} /> : <Inputs_GE onChange={handleInputChange} />}
+          <form className="grid grid-cols-6 gap-4">
+                {lang === "EN" ? 
+                <Inputs_EN onChange={handleInputChange} /> : <Inputs_GE onChange={handleInputChange} 
+                />}
           </form>
       </section>
   );

@@ -1,5 +1,6 @@
 
-import React, { useEffect, useState } from "react";
+import { toGE, toEN} from "../contexts/LanguageContext";
+import React from "react";
 
 const columns_GE = () => {
     const columns = [
@@ -91,55 +92,75 @@ const columns_EN = () => {
     );
 };
 
+
+const times_EN = ["Issued in 1 day", "Issued in 3 days", "Issued in 10 days"];
+const times_GE = ["1 დღეში გასაცემი", "3 დღეში გასაცემი", "10 დღეში გასაცემი"];
+
 export default function DataTable({ data , lang}) {
-
-    const [hydratedData, setHydratedData] = useState([]);
-
-    useEffect(() => {
-        setHydratedData(data);
-    }, [data]);
-
-    if (!hydratedData.length) {
-        return <div>Loading...</div>;
-    }
-
+    const groupDataByTime = (data) => {
+        const grouped = {};
+        times_EN.forEach((time) => {
+            grouped[time] = data.filter((item) => item.time === time);
+        });
+        return grouped;
+    };
+    
+    const groupedData = groupDataByTime(data);
     return (
         <section className="w-full overflow-x-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-            <table className="w-full table-auto border-collapse">
+            <table className="w-full table-auto border-collapse mb-4">
                 <thead>
                     <tr className="bg-gray-100 dark:bg-gray-700">
                         {lang === "EN" ? columns_EN() : columns_GE()}
                     </tr>
                 </thead>
                 <tbody>
-                    {data?.map((item, index) => (
-                        <tr className="bg-white dark:bg-gray-800">
-                            <td className="px-4 py-2 border dark:border-gray-700">
-                                {item.recieve}
-                            </td>
-                            <td className="px-4 py-2 border dark:border-gray-700">
-                                {item.sent}
-                            </td>
-                            <td className="px-4 py-2 border dark:border-gray-700">
-                                {item.document_number}
-                            </td>
-                            <td className="px-4 py-2 border dark:border-gray-700">
-                                {item.private_number}
-                            </td>
-                            <td className="px-4 py-2 border dark:border-gray-700">
-                                {item.name}
-                            </td>
-                            <td className="px-4 py-2 border dark:border-gray-700">
-                                {item.surname}
-                            </td>
-                            <td className="px-4 py-2 border dark:border-gray-700">
-                                {item.city}
-                            </td>
-                            <td className="px-4 py-2 border dark:border-gray-700">
-                                {item.status}
-                            </td>
-                        </tr>
-                    ))}
+                    {Object.keys(groupedData).map((time) => {
+                        if (!groupedData[time] || groupedData[time].length === 0) {
+                            return null;
+                        }
+
+                        return (
+                            <React.Fragment key={time}>
+                                <tr>
+                                    <td
+                                        colSpan={8}
+                                        className="px-4 py-2 text-lg font-bold text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-800"
+                                    >
+                                        {lang === "EN" ? time : times_GE[times_EN.indexOf(time)]}
+                                    </td>
+                                </tr>
+                                {groupedData[time].map((item, index) => (
+                                    <tr key={index} className="bg-white dark:bg-gray-800">
+                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                            {item.recieve}
+                                        </td>
+                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                            {item.sent}
+                                        </td>
+                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                            {item.document_number}
+                                        </td>
+                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                            {item.private_number}
+                                        </td>
+                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                            {item.name}
+                                        </td>
+                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                            {item.surname}
+                                        </td>
+                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                            {lang === "EN" ? item.city : toGE(item.city)}
+                                        </td>
+                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                            {lang === "EN" ? item.status : toGE(item.status)}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </React.Fragment>
+                        );
+                    })}
                 </tbody>
             </table>
         </section>
