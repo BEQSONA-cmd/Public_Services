@@ -39,7 +39,7 @@ const columns_GE = () => {
     ];
     return columns.map((column) => {
         return (
-            <th className="px-4 py-2 border dark:border-black">
+            <th key={column.label} className="px-4 py-2 border dark:border-black">
                 {column.label}
             </th>
         );
@@ -84,7 +84,7 @@ const columns_EN = () => {
     ];
     return columns.map((column) => {
         return (
-            <th className="px-4 py-2 border dark:border-black">
+            <th key={column.label} className="px-4 py-2 border dark:border-black">
                 {column.label}
             </th>
         );

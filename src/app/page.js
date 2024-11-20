@@ -5,12 +5,12 @@ import DataTable from "@/components/Body/DataTable";
 import { useLanguage } from "@/components/contexts/LanguageContext.js";
 import { useFilter } from "@/components/contexts/UseFilter.js";
 import FilterContainer from "@/components/Body/FilterContainer";
-import { Get_Data } from "@/components/Layout/Header.js";
+import { useData } from "@/components/contexts/DataContext.js";
 
-const data = Get_Data();
 
 export default function Home() 
 {
+  const data = useData();
   const { lang } = useLanguage();
   const { updateFilters, filteredData } = useFilter(data, lang);
 

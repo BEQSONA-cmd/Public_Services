@@ -7,13 +7,6 @@ const cities = ["Tbilisi", "Kutaisi", "Batumi", "Zugdidi"];
 const statuses = ["Standart User", "Student", "Prisoner", "Disabled Person"];
 const times = ["Issued in 1 day", "Issued in 3 days", "Issued in 10 days"];
 
-const data = [];
-
-export function Get_Data()
-{
-  return data;
-}
-
 function Set_Data(data, num) 
 {
   data.length = 0;
@@ -34,17 +27,17 @@ function Set_Data(data, num)
   }
 }
 
-export default function Header() {
+export default function Header( { data = []} ) {
   const { lang, toggleLanguage } = useLanguage();
   const [isModalOpen, setModalOpen] = useState(false);
-  const [numRecords, setNumRecords] = useState(2);
+  const [numRecords, setNumRecords] = useState(0);
 
   const openFilterModal = () => setModalOpen(true);
   const closeFilterModal = () => setModalOpen(false);
   const handleGenerateData = () => {
     console.log("generated data" + numRecords);
-  }
-  Set_Data(data, 2);
+    Set_Data(data, numRecords);
+  };
 
   return (
     <div>
