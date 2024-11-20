@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export function useFilter(data) {
-    const [filters, setFilters] = useState({ region: "", name: "", surname: "", city: "", user_type: "" });
+    const [filters, setFilters] = useState({ recieve: "", sent: "", document_number: "", private_number: "", name: "", surname: "", city: "", status: "" });
     const [filteredData, setFilteredData] = useState([]);
 
     const updateFilters = (newFilters) => {
@@ -13,9 +13,12 @@ export function useFilter(data) {
             data.filter((item) => {
                 const name = item.name.toLowerCase();
                 return (
+                    (filters.recieve === "" || item.recieve === filters.recieve) &&
+                    (filters.sent === "" || item.sent === filters.sent) &&
+                    (filters.document_number === "" || item.document_number === filters.document_number) &&
+                    (filters.private_number === "" || item.private_number === filters.private_number) &&
                     (filters.name === "" || name.includes(filters.name.toLowerCase())) &&
                     (filters.surname === "" || item.surname === filters.surname) &&
-                    (filters.region === "" || item.region === filters.region) &&
                     (filters.city === "" || item.city === filters.city) &&
                     (filters.user_type === "" || item.user_type === filters.user_type)
                 );

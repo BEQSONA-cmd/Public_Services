@@ -42,22 +42,6 @@ const Inputs_GE = ({onChange}) => {
                 "ზუგდიდი",
             ],
         },
-        {
-            label: "დოკუმენტის ტიპი",
-            type: "select",
-            options: ["გასაცემი დოკუმენტი", "გარე მომსახურეობა"],
-        },
-        {
-            label: "მომხმარებლის ტიპი",
-            type: "select",
-            options: [
-                "ყველა",
-                "სტანდარტული მომხმარებელი",
-                "სტუდენტი",
-                "პატიმარი",
-                "შშმ პირი",
-            ],
-        },
     ];
 
     return inputs.map((input, index) => {
@@ -135,22 +119,6 @@ const Inputs_EN = ({onChange}) => {
               "Batumi",
               "Tbilisi",
               "Zugdidi",
-          ],
-      },
-      {
-          label: "Document Type",
-          type: "select",
-          options: ["Internal Document", "Foreign Service"],
-      },
-      {
-          label: "User Type",
-          type: "select",
-          options: [
-              "All",
-              "Standart User",
-              "Student",
-              "Pensioner",
-              "Disabled Person",
           ],
       },
   ];
