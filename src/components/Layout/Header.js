@@ -27,7 +27,7 @@ function Set_Data(data, num)
   }
 }
 
-export default function Header( { data = []} ) {
+export default function Header( ) {
   const { lang, toggleLanguage } = useLanguage();
   const [isModalOpen, setModalOpen] = useState(false);
   const [numRecords, setNumRecords] = useState(0);

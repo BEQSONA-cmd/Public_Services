@@ -1,14 +1,20 @@
 import React, { createContext, useContext } from "react";
+import { useState } from "react";
 
 // Create the context
 const DataContext = createContext();
 
-// Create a provider component
-export const DataProvider = ({ children, data }) => {
-  return <DataContext.Provider value={data}>{children}</DataContext.Provider>;
-};
 
-// Create a custom hook to access the context
+export function DataProvider({ children }) {
+    const [data, setData] = useState([]);
+  
+    return (
+      <DataContext.Provider value={{ data, setData }}>
+        {children}
+      </DataContext.Provider>
+    );
+  }
+
 export const useData = () => {
   const context = useContext(DataContext);
   if (context === undefined) {
