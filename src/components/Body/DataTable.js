@@ -17,7 +17,7 @@ const columns_GE = () => {
             type: "text",
         },
         {
-            label: "პრიტადი ნომერი",
+            label: "პირადი ნომერი",
             type: "text",
         },
         {
