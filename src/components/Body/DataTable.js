@@ -93,8 +93,8 @@ const columns_EN = () => {
 };
 
 
-const times_EN = ["Issued in 1 day", "Issued in 3 days", "Issued in 10 days"];
-const times_GE = ["1 დღეში გასაცემი", "3 დღეში გასაცემი", "10 დღეში გასაცემი"];
+const times_EN = ["Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"];
+const times_GE = ["1 დღეში გასაცემი", "3 დღეში გასაცემი", "5 დღეში გასაცემი", "10 დღეში გასაცემი"];
 
 const rowsPerPage = 24;
 const maxPageButtons = 5;

@@ -180,7 +180,7 @@ const Inputs_EN = () => {
             options: [
                 "Standart User",
                 "Student",
-                "Pensioner",
+                "Prisoner",
                 "Disabled Person",
             ],
         },

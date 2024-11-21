@@ -26,8 +26,8 @@ export function toGE (string) {
     case "private_number": return "პირადი_ნომერი";
     case "Standart User": return "სტანდარტული მომხმარებელი";
     case "Student": return "სტუდენტი";
-    case "Prisoner": return "პატივი";
-    case "Disabled Person": return "ინვალიდი";
+    case "Prisoner": return "პატიმარი";
+    case "Disabled Person": return "შშმ პირი";
     case "Issued in 1 day": return "1 დღეში გასაცემი";
       case "Issued in 3 days": return "3 დღეში გასაცემი";
       case "Issued in 10 days": return "10 დღეში გასაცემი";
@@ -60,8 +60,8 @@ export function toEN (string) {
     case "პირადი_ნომერი": return "private_number";
     case "სტანდარტული მომხმარებელი": return "Standart User";
     case "სტუდენტი": return "Student";
-    case "პატივი": return "Prisoner";
-    case "ინვალიდი": return "Disabled Person";
+    case "პატიმარი": return "Prisoner";
+    case "შშმ პირი": return "Disabled Person";
     case "1 დღეში გასაცემი": return "Issued in 1 day";
       case "3 დღეში გასაცემი": return "Issued in 3 days";
       case "10 დღეში გასაცემი": return "Issued in 10 days";

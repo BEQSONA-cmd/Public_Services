@@ -41,8 +41,6 @@ export function useFilter(dataObj, lang) {
           );
         })
       );
-    } else {
-      console.error("data is not an array", data);
     }
   }, [filters, data]);
 

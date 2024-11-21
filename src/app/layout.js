@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Header from "@/components/Layout/Header";
 import { LanguageProvider } from "@/components/contexts/LanguageContext.js";
@@ -6,10 +5,10 @@ import { DataProvider } from "@/components/contexts/DataContext";
 
 import "./globals.css";
 
-// export const metadata = {
-//   title: "Public Services",
-//   description: "Welcome to the Public Services Template",
-// };
+export const metadata = {
+  title: "სახელმწიფო სერვისები",
+  description: "Welcome to the Public Services Template",
+};
 
 export default function RootLayout({ children }) {
   const data = [];

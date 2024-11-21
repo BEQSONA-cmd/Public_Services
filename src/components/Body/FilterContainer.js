@@ -167,7 +167,6 @@ export default function FilterContainer({ onFilterChange , lang })
           value = toEN(value);
           key = key.toLowerCase();
       }
-        console.log(key, value);
       if(value === "Select Region" || value === "Select City" ) value = "";
 
       onFilterChange((prev) => ({ ...prev, [key]: value }));

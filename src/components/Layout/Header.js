@@ -6,7 +6,7 @@ import { useData } from "../contexts/DataContext.js";
 
 const cities = ["Tbilisi", "Kutaisi", "Batumi", "Zugdidi"];
 const statuses = ["Standart User", "Student", "Prisoner", "Disabled Person"];
-const times = ["Issued in 1 day", "Issued in 3 days", "Issued in 10 days"];
+const times = ["Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"];
 
 function Generate_Data(num) 
 {
@@ -23,7 +23,7 @@ function Generate_Data(num)
       surname: `Surname ${i + 1}`,
       city: cities[Math.floor(Math.random() * cities.length)],
       status: statuses[Math.floor(Math.random() * statuses.length)],
-      time: times[Math.floor(Math.random() * times.length)]
+      time: times[Math.floor(Math.random() * times.length)],
     });
   }
   return data;
@@ -66,15 +66,15 @@ export default function Header( ) {
           </div>
           <div className="flex items-center gap-2">
             <input
-              type="number"
+              type="text"
               value={numRecords}
               onChange={(e) => setNumRecords(e.target.value)}
-              placeholder={lang === "EN" ? "Number of Records" : "ჩანაწერების რაოდენობა"}
-              className="w-28 px-2 py-1 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
+              placeholder={lang === "EN" ? "Number" : "რაოდენობა"}
+              className="w-28 px-4 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
             />
             <button
               onClick={handleGenerateData}
-              className="bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-green-700 transform hover:scale-105 transition duration-300"
+              className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transform hover:scale-105 transition duration-300"
             >
               {lang === "EN" ? "Generate" : "შექმნა"}
             </button>
