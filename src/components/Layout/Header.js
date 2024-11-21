@@ -23,8 +23,8 @@ function Generate_Data(num)
       return number < 10 ? `0${number}` : number.toString();
     };
     data.push({
-      recieve: `2024-${ran(1, 12)}-${ran(1, 28)}`,
-      sent: `2024-${ran(1, 12)}-${ran(1, 28)}`,
+      recieve: `${ran(1, 28)}/${ran(1, 12)}/24`,
+      sent: `${ran(1, 28)}/${ran(1, 12)}/24`,
       document_number: random11DigitString(),
       private_number: random11DigitString(),
       name: names[Math.floor(Math.random() * names.length)],
