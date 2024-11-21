@@ -11,7 +11,7 @@ export function useFilter(dataObj, lang) {
     name: "",
     surname: "",
     city: "",
-    status: ""
+    user_type: ""
   });
   
   const [filteredData, setFilteredData] = useState([]);
