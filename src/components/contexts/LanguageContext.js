@@ -24,7 +24,7 @@ export function toGE (string) {
   switch (string) {
     case "document_number": return "საბუთის_ნომერი";
     case "private_number": return "პირადი_ნომერი";
-    case "Standart User": return "სტანდარტული მომხმარებელი";
+    case "Standart": return "სტანდარტული";
     case "Student": return "სტუდენტი";
     case "Prisoner": return "პატიმარი";
     case "Disabled Person": return "შშმ პირი";
@@ -58,7 +58,7 @@ export function toEN (string) {
   switch (string) {
     case "საბუთის_ნომერი": return "document_number";
     case "პირადი_ნომერი": return "private_number";
-    case "სტანდარტული მომხმარებელი": return "Standart User";
+    case "სტანდარტული": return "Standart";
     case "სტუდენტი": return "Student";
     case "პატიმარი": return "Prisoner";
     case "შშმ პირი": return "Disabled Person";
