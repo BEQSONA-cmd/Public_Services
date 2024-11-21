@@ -58,7 +58,7 @@ const Inputs_GE = () => {
             label: "მომხმარებლის ტიპი",
             type: "select",
             options: [
-                "სტანდარტული მომხმარებელი",
+                "სტანდარტული",
                 "სტუდენტი",
                 "პატიმარი",
                 "შშმ პირი",
@@ -178,7 +178,7 @@ const Inputs_EN = () => {
             label: "User Type",
             type: "select",
             options: [
-                "Standart User",
+                "Standart",
                 "Student",
                 "Prisoner",
                 "Disabled Person",
