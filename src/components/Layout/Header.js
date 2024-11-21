@@ -42,6 +42,21 @@ export default function Header( ) {
     updateData(data);
   };
 
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+
+  const toggleTheme = () => {
+    const htmlElement = document.documentElement;
+    if (htmlElement.classList.contains("dark")) {
+      htmlElement.classList.remove("dark");
+      setIsDarkMode(false)
+    } else {
+      htmlElement.classList.add("dark");
+      setIsDarkMode(true);
+    }
+  };
+
+
   return (
     <div>
       <header className="flex justify-between items-center bg-white dark:bg-gray-800 p-4 shadow-md w-full border-b border-black">
@@ -84,6 +99,12 @@ export default function Header( ) {
             className="bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-purple-700 transform hover:scale-105 transition duration-300"
           >
             {lang === "EN" ? "GE" : "EN"}
+          </button>
+          <button
+            onClick={toggleTheme}
+            className="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-700 transform hover:scale-105 transition duration-300"
+          >
+            {isDarkMode ? "Light" : "Dark"}
           </button>
         </div>
       </header>
