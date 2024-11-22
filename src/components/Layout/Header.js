@@ -79,7 +79,7 @@ export default function Header( ) {
           </a>
         </div>
         <div className="relative flex gap-4">
-          <div className="relative">
+          {/* <div className="relative">
             <input
               type="text"
               placeholder={lang === "EN" ? "Search" : "ძებნა"}
@@ -91,7 +91,7 @@ export default function Header( ) {
             >
               &#9881;
             </button>
-          </div>
+          </div> */}
           <div className="flex items-center gap-2">
             <input
               type="text"
