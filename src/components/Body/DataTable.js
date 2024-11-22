@@ -97,7 +97,7 @@ const times_EN = ["Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Is
 const times_GE = ["1 დღეში გასაცემი", "3 დღეში გასაცემი", "5 დღეში გასაცემი", "10 დღეში გასაცემი"];
 
 const rowsPerPage = 24;
-const maxPageButtons = 5;
+const maxPageButtons = 10;
 
 export default function DataTable({ data, lang }) {
     const [currentPage, setCurrentPage] = useState(1);
