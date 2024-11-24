@@ -101,6 +101,7 @@ const maxPageButtons = 10;
 
 export default function DataTable({ data, lang }) {
     const [currentPage, setCurrentPage] = useState(1);
+    const [toggledRows, setToggledRows] = useState({});
 
     const groupDataByTime = (data) => {
         const grouped = {};
@@ -144,6 +145,16 @@ export default function DataTable({ data, lang }) {
 
     const { buttons, hasPreviousGroup, hasNextGroup } = getPaginationButtons();
 
+
+    const handleCopy = (text, index) => {
+        navigator.clipboard.writeText(text).then(() => {
+            alert('Copied to clipboard');
+            setToggledRows((prev) => ({
+                ...prev,
+                [index]: !prev[index], // Toggle the clicked row's state
+            }));
+        });
+    };
     return (
         <section className="w-full overflow-x-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
             <table className="w-full table-auto border-collapse mb-4">
@@ -170,15 +181,28 @@ export default function DataTable({ data, lang }) {
                                     </td>
                                 </tr>
                                 {dataForTime.map((item, index) => (
-                                    <tr key={index} className="bg-white dark:bg-gray-800">
+                                                                        <tr
+                                                                        key={index}
+                                                                        className={`${
+                                                                            toggledRows[item.document_number]
+                                                                                ? "bg-green-500 dark:bg-green-700"
+                                                                                : "bg-white dark:bg-gray-800"
+                                                                        }`}
+                                                                    >
                                         <td className="px-4 py-2 border dark:border-gray-700">
                                             {item.recieve}
                                         </td>
                                         <td className="px-4 py-2 border dark:border-gray-700">
                                             {item.sent}
                                         </td>
-                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                        <td className="px-4 py-2 border dark:border-gray-700 relative">
                                             {item.document_number}
+                                            <button
+                                                className="absolute right-0 top-1/2 transform -translate-y-1/2 px-2 py-1 bg-blue-500 text-white rounded"
+                                                onClick={() => handleCopy(item.document_number)}
+                                            >
+                                                Copy
+                                            </button>
                                         </td>
                                         <td className="px-4 py-2 border dark:border-gray-700">
                                             {item.private_number}
