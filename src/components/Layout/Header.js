@@ -7,6 +7,7 @@ import { useData } from "../contexts/DataContext.js";
 const cities = ["Tbilisi", "Kutaisi", "Batumi", "Zugdidi"];
 const statuses = ["", "Student", "Prisoner", "Disabled Person"];
 const times = ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"];
+const types = ["", "Electric", "Temporary", "Permanent", "Post"];
 
 import nameData from "@/assets/data.json";
 
@@ -32,16 +33,20 @@ function Generate_Data(num)
       city: cities[Math.floor(Math.random() * cities.length)],
       status: statuses[Math.floor(Math.random() * statuses.length)],
       time: times[Math.floor(Math.random() * times.length)],
+      type: types[Math.floor(Math.random() * types.length)],
     });
   }
   return data;
 }
+
 
 export default function Header( ) {
   const { updateData } = useData();
   const { lang, toggleLanguage } = useLanguage();
   const [isModalOpen, setModalOpen] = useState(false);
   const [numRecords, setNumRecords] = useState(0);
+
+  const [old_data] = useState([]);
 
   const openFilterModal = () => setModalOpen(true);
   const closeFilterModal = () => setModalOpen(false);
@@ -92,6 +97,32 @@ export default function Header( ) {
               &#9881;
             </button>
           </div> */}
+          {/* ელექტრონული, დროებითი, მუდმივი, ფოსტა */}
+          {/* 4 button */}
+          <div className="flex items-center gap-2">
+          <button 
+            className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transform hover:scale-105 transition duration-300"
+          >
+            {lang === "EN" ? "Electric" : "ელექტრონული"} {old_data.filter((item) => item.type === "Electric").length}
+          </button>
+            <button
+              className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transform hover:scale-105 transition duration-300"
+            >
+              {lang === "EN" ? "Temporary" : "დროებითი"} {old_data.filter((item) => item.type === "Temporary").length}
+            </button>
+            <button
+              className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transform hover:scale-105 transition duration-300"
+            >
+              {lang === "EN" ? "Permanent" : "მუდმივი"} {old_data.filter((item) => item.type === "Permanent").length}
+            </button>
+            <button
+              className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transform hover:scale-105 transition duration-300"
+            >
+              {lang === "EN" ? "Post" : "ფოსტა"} {old_data.filter((item) => item.type === "Post").length}
+            </button>
+          </div>
+          {/* electric, temporary, permanent, post */}
+
           <div className="flex items-center gap-2">
             <input
               type="text"
