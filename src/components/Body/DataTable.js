@@ -155,7 +155,7 @@ export default function DataTable({ data, lang }) {
 
     const handleCopy = (text, documentId) => {
         navigator.clipboard.writeText(text).then(() => {
-            alert('Copied to clipboard');
+            // alert('Copied to clipboard');
             setToggledRows((prev) => ({
                 ...prev,
                 [documentId]: !prev[documentId],
