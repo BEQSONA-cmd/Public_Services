@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
+import { useData } from "./DataContext";
 
-export function useFilter(dataObj, lang) {
-  const { data } = dataObj;
+export function useFilter(lang) {
+  const { data } = useData();
 
   const [filters, setFilters] = useState({
     recieve: "",

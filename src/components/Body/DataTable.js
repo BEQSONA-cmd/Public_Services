@@ -2,6 +2,7 @@
 import { toGE, toEN} from "../contexts/LanguageContext";
 import { FaRegCopy } from "react-icons/fa6";
 import React, { useState } from "react";
+import { useData } from "../contexts/DataContext";
 
 const columns_GE = () => {
     const columns = [
@@ -99,7 +100,9 @@ const times_GE = ["0 - დღიანი", "1 - დღიანი", "3 - დ�
 
 const rowsPerPage = 24;
 const maxPageButtons = 10;
-export default function DataTable({ data, lang }) {
+export default function DataTable({ lang }) {
+    
+    const { filteredData:data } = useData();
 
     const amount_of_0_days = data.filter((item) => item.time === "Issued in 0 day").length;
     const amount_of_1_days = data.filter((item) => item.time === "Issued in 1 day").length;

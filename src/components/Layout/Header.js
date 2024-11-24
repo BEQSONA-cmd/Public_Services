@@ -41,6 +41,9 @@ function Generate_Data(num)
 
 
 export default function Header( ) {
+
+  // const { updateFilters, filteredData } = useFilter(lang);
+
   const { updateData } = useData();
   const { lang, toggleLanguage } = useLanguage();
   const [numRecords, setNumRecords] = useState(0);
@@ -81,7 +84,7 @@ export default function Header( ) {
         </div>
         <div className="relative flex gap-4">
           <div className="flex items-center gap-2">
-          <button 
+          <button onClick
             className="bg-gray-200 text-black font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-400 transform hover:scale-105 transition duration-300"
           >
             {lang === "EN" ? "Electric" : "ელექტრონული"} {old_data.filter((item) => item.type === "Electric").length}
