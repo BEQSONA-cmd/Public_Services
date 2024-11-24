@@ -213,7 +213,7 @@ export default function DataTable({ data, lang }) {
                                                 className="absolute right-2 top-1/2 transform -translate-y-1/2 px-2 py-1 text-black rounded"
                                                 onClick={() => handleCopy(item.document_number, item.document_number)}
                                             >
-                                                <FaRegCopy />
+                                                <FaRegCopy size={20} />
                                             </button>
                                         </td>
                                         <td className="px-4 py-2 border dark:border-gray-700">
