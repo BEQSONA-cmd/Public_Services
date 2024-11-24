@@ -46,7 +46,7 @@ export default function Header( ) {
   const [isModalOpen, setModalOpen] = useState(false);
   const [numRecords, setNumRecords] = useState(0);
 
-  const [old_data] = useState([]);
+  const old_data = useData().data;
 
   const openFilterModal = () => setModalOpen(true);
   const closeFilterModal = () => setModalOpen(false);
@@ -101,22 +101,22 @@ export default function Header( ) {
           {/* 4 button */}
           <div className="flex items-center gap-2">
           <button 
-            className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transform hover:scale-105 transition duration-300"
+            className="bg-gray-200 text-black font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-400 transform hover:scale-105 transition duration-300"
           >
             {lang === "EN" ? "Electric" : "ელექტრონული"} {old_data.filter((item) => item.type === "Electric").length}
           </button>
             <button
-              className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transform hover:scale-105 transition duration-300"
+              className="bg-gray-200 text-black font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-400 transform hover:scale-105 transition duration-300"
             >
               {lang === "EN" ? "Temporary" : "დროებითი"} {old_data.filter((item) => item.type === "Temporary").length}
             </button>
             <button
-              className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transform hover:scale-105 transition duration-300"
+              className="bg-gray-200 text-black font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-400 transform hover:scale-105 transition duration-300"
             >
               {lang === "EN" ? "Permanent" : "მუდმივი"} {old_data.filter((item) => item.type === "Permanent").length}
             </button>
             <button
-              className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transform hover:scale-105 transition duration-300"
+              className="bg-gray-200 text-black font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-400 transform hover:scale-105 transition duration-300"
             >
               {lang === "EN" ? "Post" : "ფოსტა"} {old_data.filter((item) => item.type === "Post").length}
             </button>
