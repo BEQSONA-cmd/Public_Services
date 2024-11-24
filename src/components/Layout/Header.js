@@ -5,7 +5,7 @@ import { useLanguage } from "../contexts/LanguageContext.js";
 import { useData } from "../contexts/DataContext.js";
 
 const cities = ["Tbilisi", "Kutaisi", "Batumi", "Zugdidi"];
-const statuses = ["Standart", "Student", "Prisoner", "Disabled Person"];
+const statuses = ["", "Student", "Prisoner", "Disabled Person"];
 const times = ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"];
 
 import nameData from "@/assets/data.json";
