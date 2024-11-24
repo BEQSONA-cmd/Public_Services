@@ -44,6 +44,15 @@ const Inputs_GE = ({onChange}) => {
                 "ზუგდიდი",
             ],
         },
+        {
+            label: "ტერიატორია",
+            type: "select",
+            options: [
+                "ადგილზე",
+                "ფოსტა",
+                "ფოსტა 'აქცია'",
+            ],
+        },
     ];
 
     return inputs.map((input, index) => {
@@ -123,6 +132,15 @@ const Inputs_EN = ({onChange}) => {
               "Zugdidi",
           ],
       },
+      {
+        label: "Territory",
+        type: "select",
+        options: [
+            "On Place",
+            "Post",
+            "Post 'Office'",
+        ],
+    },
   ];
 
   return inputs.map((input, index) => {
@@ -178,7 +196,7 @@ export default function FilterContainer({ onFilterChange , lang })
           >
                 {lang === "EN" ? "Filter" : "ფილტრი"}
             </h2>
-          <form className="grid grid-cols-6 gap-4">
+          <form className="grid grid-cols-7 gap-4">
                 {lang === "EN" ? 
                 <Inputs_EN onChange={handleInputChange} /> : <Inputs_GE onChange={handleInputChange} 
                 />}

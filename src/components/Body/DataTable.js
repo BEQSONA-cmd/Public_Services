@@ -1,5 +1,6 @@
 
 import { toGE, toEN} from "../contexts/LanguageContext";
+import { FaRegCopy } from "react-icons/fa6";
 import React, { useState } from "react";
 
 const columns_GE = () => {
@@ -93,12 +94,20 @@ const columns_EN = () => {
 };
 
 
-const times_EN = ["Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"];
-const times_GE = ["1 დღეში გასაცემი", "3 დღეში გასაცემი", "5 დღეში გასაცემი", "10 დღეში გასაცემი"];
+const times_EN = ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"];
+const times_GE = ["0 - დღიანი", "1 - დღიანი", "3 - დღიანი", "5 - დღიანი", "10 - დღიანი"];
 
 const rowsPerPage = 24;
 const maxPageButtons = 10;
 export default function DataTable({ data, lang }) {
+
+    const amount_of_0_days = data.filter((item) => item.time === "Issued in 0 day").length;
+    const amount_of_1_days = data.filter((item) => item.time === "Issued in 1 day").length;
+    const amount_of_3_days = data.filter((item) => item.time === "Issued in 3 days").length;
+    const amount_of_5_days = data.filter((item) => item.time === "Issued in 5 days").length;
+    const amount_of_10_days = data.filter((item) => item.time === "Issued in 10 days").length;
+    let amo = [amount_of_0_days, amount_of_1_days, amount_of_3_days, amount_of_5_days, amount_of_10_days];
+
     const [currentPage, setCurrentPage] = useState(1);
     const [toggledRows, setToggledRows] = useState({});
 
@@ -176,7 +185,11 @@ export default function DataTable({ data, lang }) {
                                         colSpan={8}
                                         className="px-4 py-2 text-lg font-bold text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-800"
                                     >
-                                        {lang === "EN" ? time : times_GE[times_EN.indexOf(time)]}
+                                        <div className="flex justify-between">
+                                            <span>{lang == "EN" ? time : times_GE[times_EN.indexOf(time)]}</span>
+                                            <span>{amo[times_EN.indexOf(time)]}</span>
+                                            <span></span>
+                                        </div>
                                     </td>
                                 </tr>
                                 {dataForTime.map((item, index) => (
@@ -197,10 +210,10 @@ export default function DataTable({ data, lang }) {
                                         <td className="px-4 py-2 border dark:border-gray-700 relative">
                                             {item.document_number}
                                             <button
-                                                className="absolute right-0 top-1/2 transform -translate-y-1/2 px-2 py-1 bg-blue-500 text-white rounded"
+                                                className="absolute right-2 top-1/2 transform -translate-y-1/2 px-2 py-1 text-black rounded"
                                                 onClick={() => handleCopy(item.document_number, item.document_number)}
                                             >
-                                                Copy
+                                                <FaRegCopy />
                                             </button>
                                         </td>
                                         <td className="px-4 py-2 border dark:border-gray-700">
