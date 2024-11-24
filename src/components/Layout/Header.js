@@ -43,13 +43,9 @@ function Generate_Data(num)
 export default function Header( ) {
   const { updateData } = useData();
   const { lang, toggleLanguage } = useLanguage();
-  const [isModalOpen, setModalOpen] = useState(false);
   const [numRecords, setNumRecords] = useState(0);
 
   const old_data = useData().data;
-
-  const openFilterModal = () => setModalOpen(true);
-  const closeFilterModal = () => setModalOpen(false);
   const handleGenerateData = () => {
     if(numRecords > 100000)
     {
@@ -84,21 +80,6 @@ export default function Header( ) {
           </a>
         </div>
         <div className="relative flex gap-4">
-          {/* <div className="relative">
-            <input
-              type="text"
-              placeholder={lang === "EN" ? "Search" : "ძებნა"}
-              className="w-96 px-4 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
-            />
-            <button
-              onClick={openFilterModal}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400"
-            >
-              &#9881;
-            </button>
-          </div> */}
-          {/* ელექტრონული, დროებითი, მუდმივი, ფოსტა */}
-          {/* 4 button */}
           <div className="flex items-center gap-2">
           <button 
             className="bg-gray-200 text-black font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-gray-400 transform hover:scale-105 transition duration-300"
@@ -152,11 +133,6 @@ export default function Header( ) {
           </button>
         </div>
       </header>
-      <FilterModal
-        isModalOpen={isModalOpen}
-        closeFilterModal={closeFilterModal}
-        lang={lang}
-      />
     </div>
   );
 }

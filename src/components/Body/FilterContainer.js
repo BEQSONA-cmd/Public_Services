@@ -1,4 +1,6 @@
 import { toEN } from "../contexts/LanguageContext";
+import FilterModal from "../Layout/Modal.js";
+import React, { useState } from 'react';
 
 const Inputs_GE = ({onChange}) => {
     const inputs = [
@@ -177,6 +179,10 @@ const Inputs_EN = ({onChange}) => {
 
 export default function FilterContainer({ onFilterChange , lang }) 
 {
+    const [isModalOpen, setModalOpen] = useState(false);
+
+    const openFilterModal = () => setModalOpen(true);
+    const closeFilterModal = () => setModalOpen(false);
 
     const handleInputChange = (key, value) => {
       if(lang == "GE")
@@ -192,15 +198,27 @@ export default function FilterContainer({ onFilterChange , lang })
 
   return (
       <section className="w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-          <h2 className="text-lg font-bold mb-4"
-          >
+          <h2 className="text-lg font-bold mb-4">
                 {lang === "EN" ? "Filter" : "ფილტრი"}
-            </h2>
+          </h2>
+          <div className="relative">
+            <button
+              onClick={openFilterModal}
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400"
+            >
+              &#9881;
+            </button>
+          </div>
           <form className="grid grid-cols-7 gap-4">
                 {lang === "EN" ? 
                 <Inputs_EN onChange={handleInputChange} /> : <Inputs_GE onChange={handleInputChange} 
                 />}
           </form>
+          <FilterModal
+        isModalOpen={isModalOpen}
+        closeFilterModal={closeFilterModal}
+        lang={lang}
+      />
       </section>
   );
 }
