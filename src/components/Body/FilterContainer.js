@@ -1,3 +1,4 @@
+import { useData } from "../contexts/DataContext";
 import { toEN } from "../contexts/LanguageContext";
 import FilterModal from "../Layout/Modal.js";
 import React, { useState } from 'react';
@@ -177,8 +178,10 @@ const Inputs_EN = ({onChange}) => {
   });
 };
 
-export default function FilterContainer({ onFilterChange , lang }) 
+export default function FilterContainer({ lang }) 
 {
+    const { setFilters } = useData();
+
     const [isModalOpen, setModalOpen] = useState(false);
 
     const openFilterModal = () => setModalOpen(true);
@@ -193,7 +196,7 @@ export default function FilterContainer({ onFilterChange , lang })
       }
       if(value === "Select Region" || value === "Select City" ) value = "";
 
-      onFilterChange((prev) => ({ ...prev, [key]: value }));
+      setFilters((prev) => ({ ...prev, [key]: value }));
   }
 
   return (
