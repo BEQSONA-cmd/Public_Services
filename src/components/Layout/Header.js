@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useLanguage } from "../contexts/LanguageContext.js";
+import { toEN } from "../contexts/LanguageContext.js";
 import { useData } from "../contexts/DataContext.js";
 
 const cities = ["Tbilisi", "Kutaisi", "Batumi", "Zugdidi"];
@@ -38,91 +39,94 @@ function Generate_Data(num)
   return data;
 }
 
+const Select_GE = ({ onChange }) => {
+  const selects = [
+    {
+      label: "ელექტრონული",
+      options: ["0 - დღიანი", "1 - დღიანი", "3 - დღიანი", "5 - დღიანი", "10 - დღიანი"],
+    },
+    {
+      label: "დროებითი",
+      options: ["0 - დღიანი", "1 - დღიანი", "3 - დღიანი", "5 - დღიანი", "10 - დღიანი"],
+    },
+    {
+      label: "მუდმივი",
+      options: ["0 - დღიანი", "1 - დღიანი", "3 - დღიანი", "5 - დღიანი", "10 - დღიანი"],
+    },
+    {
+      label: "ფოსტა",
+      options: ["0 - დღიანი", "1 - დღიანი", "3 - დღიანი", "5 - დღიანი", "10 - დღიანი"],
+    },
+  ];
+
+  return selects.map((select, index) => {
+    return (
+      <label key={index} className="block text-base font-medium text-center">
+        {select.label}
+        <select
+          onChange={(e) => onChange(select.label, e.target.value)}
+          className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
+        >
+          {select.options.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </label>
+    );
+  });
+};
 
 
 
+const Select_EN = ({ onChange }) => {
+  const selects = [
+    {
+      label: "Electric",
+      options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
+    },
+    {
+      label: "Temporary",
+      options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
+    },
+    {
+      label: "Permanent",
+      options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
+    },
+    {
+      label: "Post",
+      options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
+    },
+  ];
 
-// return inputs.map((input, index) => {
+  return selects.map((select, index) => {
+    return (
+      <label key={index} className="block text-base font-medium text-center">
+        {select.label}
+        <select
+          onChange={(e) => onChange(select.label, e.target.value)}
+          className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
+        >
+          {select.options.map((option, index) => (
+            <option key={index} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+      </label>
+    );
+  }
+  );
+};
 
-//   if(input.type === "select"){
-//       return (
-//           <label key={index} className="block text-sm font-medium">
-//               {input.label}
-//               <select
-//                   onChange={(e) => onChange(input.label.toLowerCase().replace(" ","_"), e.target.value)}
-//                   className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
-//               >
-//                   {input.options.map((option, index) => (
-//                       <option key={index}>{option}</option>
-//                   ))}
-//               </select>
-//           </label>
-//       );
-//   }
 
-//   return (
-//       <label key={index} className="block text-sm font-medium">
-//           {input.label}
-//           <input
-//               onChange={(e) => onChange(input.label.toLowerCase().replace(" ","_"), e.target.value)}
-//               type={input.type}
-//               className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
-//               placeholder={input.placeholder}
-//           />
-//       </label>
-//   );
-// });
-// };
-
-// export default function FilterContainer({ onFilterChange , lang }) 
-// {
-// const [isModalOpen, setModalOpen] = useState(false);
-
-// const openFilterModal = () => setModalOpen(true);
-// const closeFilterModal = () => setModalOpen(false);
-
-// const handleInputChange = (key, value) => {
-//   if(lang == "GE")
-//   {
-//       key = toEN(key);
-//       value = toEN(value);
-//       key = key.toLowerCase();
-//   }
-//   if(value === "Select Region" || value === "Select City" ) value = "";
-
-//   onFilterChange((prev) => ({ ...prev, [key]: value }));
-// }
-
-// return (
-//   <section className="w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-//       <h2 className="text-lg font-bold mb-4">
-//             {lang === "EN" ? "Filter" : "ფილტრი"}
-//       </h2>
-//       <div className="relative">
-//         <button
-//           onClick={openFilterModal}
-//           className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400"
-//         >
-//           &#9881;
-//         </button>
-//       </div>
-//       <form className="grid grid-cols-7 gap-4">
-//             {lang === "EN" ? 
-//             <Inputs_EN onChange={handleInputChange} /> : <Inputs_GE onChange={handleInputChange} 
-//             />}
-//       </form>
-//       <FilterModal
-//     isModalOpen={isModalOpen}
-//     closeFilterModal={closeFilterModal}
-//     lang={lang}
-//   />
-//   </section>
-// );
-// }
 
 export default function Header( ) {
 
   // const {}
+
+  const { setFilters } = useData();
 
   const { updateData } = useData();
   const { lang, toggleLanguage } = useLanguage();
@@ -138,6 +142,18 @@ export default function Header( ) {
     const data = Generate_Data(numRecords);
     updateData(data);
   };
+
+  const handleInputChange = (key, value) => {
+    console.log(key, value);
+    if(lang == "GE")
+    {
+        key = toEN(key);
+        value = toEN(value);
+        key = key.toLowerCase();
+    }
+    if(value === "Select Region" || value === "Select City" ) value = "";
+    setFilters((prev) => ({ ...prev, [key]: value }));
+}
 
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -162,27 +178,8 @@ export default function Header( ) {
             <img src="/image.png" alt="Logo" className="h-14 w-1000" />
           </a>
         </div>
-        <div className="text-xl flex  gap-4">
-          <button 
-            className="bg-gray-200 text-black font-semibold py-2 px-16 rounded-lg shadow-md hover:bg-gray-400 transform hover:scale-105 transition duration-300"
-          >
-            {lang === "EN" ? "Electric" : "ელექტრონული"} {old_data.filter((item) => item.type === "Electric").length}
-          </button>
-            <button
-              className="bg-gray-200 text-black font-semibold py-2 px-16 rounded-lg shadow-md hover:bg-gray-400 transform hover:scale-105 transition duration-300"
-            >
-              {lang === "EN" ? "Temporary" : "დროებითი"} {old_data.filter((item) => item.type === "Temporary").length}
-            </button>
-            <button
-              className="bg-gray-200 text-black font-semibold py-2 px-16 rounded-lg shadow-md hover:bg-gray-400 transform hover:scale-105 transition duration-300"
-            >
-              {lang === "EN" ? "Permanent" : "მუდმივი"} {old_data.filter((item) => item.type === "Permanent").length}
-            </button>
-            <button
-              className="bg-gray-200 text-black font-semibold py-2 px-16 rounded-lg shadow-md hover:bg-gray-400 transform hover:scale-105 transition duration-300"
-            >
-              {lang === "EN" ? "Post" : "ფოსტა"} {old_data.filter((item) => item.type === "Post").length}
-            </button>
+        <div className="text-xl flex gap-4">
+          {lang === "EN" ? <Select_EN onChange={handleInputChange} /> : <Select_GE onChange={handleInputChange} />}
         </div>
         <div className="relative flex gap-4">
           <div className="flex items-center gap-2">

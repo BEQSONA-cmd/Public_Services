@@ -195,7 +195,6 @@ export default function FilterContainer({ lang })
           key = key.toLowerCase();
       }
       if(value === "Select Region" || value === "Select City" ) value = "";
-
       setFilters((prev) => ({ ...prev, [key]: value }));
   }
 
