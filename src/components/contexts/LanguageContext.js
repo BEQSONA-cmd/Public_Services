@@ -50,6 +50,10 @@ export function toGE (string) {
       case "Kutaisi": return "ქუთაისი";
       case "Batumi": return "ბათუმი";
       case "Zugdidi": return "ზუგდიდი";
+      case "Electric": return "ელექტრონული";
+      case "Temporary": return "დროებითი";
+      case "Permanent": return "მუდმივი";
+      case "Post": return "ფოსტა";
       default: return string;
   }
 }
@@ -84,6 +88,10 @@ export function toEN (string) {
       case "ქუთაისი": return "Kutaisi";
       case "ბათუმი": return "Batumi";
       case "ზუგდიდი": return "Zugdidi";
+      case "ელექტრონული": return "Electric";
+      case "დროებითი": return "Temporary";
+      case "მუდმივი": return "Permanent";
+      case "ფოსტა": return "Post";
       default: return string;
   }
 }

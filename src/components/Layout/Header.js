@@ -39,7 +39,7 @@ function Generate_Data(num)
   return data;
 }
 
-const Select_GE = ({ onChange }) => {
+const Select_GE = ({ old_data, onChange }) => {
   const selects = [
     {
       label: "ელექტრონული",
@@ -66,7 +66,7 @@ const Select_GE = ({ onChange }) => {
   return selects.map((select, index) => {
     return (
       <label key={index} className="block text-base font-medium text-center">
-        {select.label}
+        {select.label + " " + old_data.filter((data) => data.type === toEN(select.label)).length}
         <select
           onChange={(e) => onChange(select.label, e.target.value)}
           className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
@@ -84,7 +84,7 @@ const Select_GE = ({ onChange }) => {
 
 
 
-const Select_EN = ({ onChange }) => {
+const Select_EN = ({old_data, onChange }) => {
   const selects = [
     {
       label: "Electric",
@@ -103,7 +103,7 @@ const Select_EN = ({ onChange }) => {
       options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
     },
     {
-      label: "City",
+      label: "city",
       options: ["Tbilisi", "Kutaisi", "Batumi", "Zugdidi"],
     },
   ];
@@ -111,7 +111,7 @@ const Select_EN = ({ onChange }) => {
   return selects.map((select, index) => {
     return (
       <label key={index} className="block text-base font-medium text-center">
-        {select.label}
+        {select.label + " " + old_data.filter((data) => data.type === select.label).length}
         <select
           onChange={(e) => onChange(select.label, e.target.value)}
           className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
@@ -187,7 +187,10 @@ export default function Header( ) {
           </a>
         </div>
         <div className="text-xl flex gap-4">
-          {lang === "EN" ? <Select_EN onChange={handleInputChange} /> : <Select_GE onChange={handleInputChange} />}
+          {lang === "EN" ? <
+            Select_EN old_data={old_data} onChange={handleInputChange} /> :
+            <Select_GE old_data={old_data} onChange={handleInputChange} />
+          }
         </div>
         <div className="relative flex gap-4">
           <div className="flex items-center gap-2">
