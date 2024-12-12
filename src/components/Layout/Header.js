@@ -57,6 +57,10 @@ const Select_GE = ({ onChange }) => {
       label: "ფოსტა",
       options: ["0 - დღიანი", "1 - დღიანი", "3 - დღიანი", "5 - დღიანი", "10 - დღიანი"],
     },
+    {
+      label: "ქალაქი",
+      options: ["თბილისი", "ქუთაისი", "ბათუმი", "ზუგდიდი"],
+    },
   ];
 
   return selects.map((select, index) => {
@@ -97,6 +101,10 @@ const Select_EN = ({ onChange }) => {
     {
       label: "Post",
       options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
+    },
+    {
+      label: "City",
+      options: ["Tbilisi", "Kutaisi", "Batumi", "Zugdidi"],
     },
   ];
 
@@ -184,8 +192,6 @@ export default function Header( ) {
         <div className="relative flex gap-4">
           <div className="flex items-center gap-2">
           </div>
-          {/* electric, temporary, permanent, post */}
-
           <div className="flex items-center gap-2">
             <input
               type="text"
