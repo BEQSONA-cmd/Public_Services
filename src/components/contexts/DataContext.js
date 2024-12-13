@@ -15,7 +15,9 @@ export function DataProvider({ children }) {
     name: "",
     surname: "",
     city: "",
-    user_type: ""
+    status: "",
+    time: "",
+    type: "",
   });
 
   useEffect(() => {
@@ -35,7 +37,9 @@ export function DataProvider({ children }) {
             (filters.surname === "" || surname.includes(filters.surname.toLowerCase())) &&
             (filters.name === "" || name.includes(filters.name.toLowerCase())) &&
             (filters.city === "" || item.city === filters.city) &&
-            (filters.user_type === "" || item.user_type === filters.user_type)
+            (filters.status === "" || item.status === filters.status) &&
+            (filters.time === "" || item.time === filters.time) &&
+            (filters.type === "" || item.type === filters.type)
           );
         })
       );

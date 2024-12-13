@@ -249,27 +249,6 @@ const Inputs_EN = () => {
 };
 
 
-
-// export default function FilterContainer({ onFilterChange , lang }) {
-//     const handleInputChange = (key, value) => {
-//         if(value === "Select Region" || value === "Select City" || value === "All") value = "";
-  
-//         onFilterChange((prev) => ({ ...prev, [key]: value }));
-//     }
-  
-//     return (
-//         <section className="w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-//             <h2 className="text-lg font-bold mb-4"
-//             >
-//                   {lang === "EN" ? "Filter" : "ფილტრი"}
-//               </h2>
-//             <form className="grid grid-cols-4 gap-4">
-//                   {lang === "EN" ? <Inputs_EN onChange={handleInputChange} /> : <Inputs_GE onChange={handleInputChange} />}
-//             </form>
-//         </section>
-//     );
-//   }
-
 export default function FilterModal({ isModalOpen, closeFilterModal , lang }) {
 
     if (!isModalOpen) return null;

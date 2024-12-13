@@ -1,5 +1,5 @@
 
-import { toGE, toEN} from "../contexts/LanguageContext";
+import { toGE } from "../contexts/LanguageContext";
 import { FaRegCopy } from "react-icons/fa6";
 import React, { useState } from "react";
 import { useData } from "../contexts/DataContext";

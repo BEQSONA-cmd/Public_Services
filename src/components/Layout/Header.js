@@ -7,7 +7,7 @@ import { useData } from "../contexts/DataContext.js";
 const cities = ["Tbilisi", "Kutaisi", "Batumi", "Zugdidi"];
 const statuses = ["", "Student", "Prisoner", "Disabled Person"];
 const times = ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"];
-const types = ["", "Electric", "Temporary", "Permanent", "Post"];
+const types = ["Electric", "Temporary", "Permanent", "Post"];
 
 import nameData from "@/assets/data.json";
 
@@ -57,34 +57,37 @@ const Select_GE = ({ old_data, onChange }) => {
       label: "ფოსტა",
       options: ["0 - დღიანი", "1 - დღიანი", "3 - დღიანი", "5 - დღიანი", "10 - დღიანი"],
     },
-    {
-      label: "ქალაქი",
-      options: ["თბილისი", "ქუთაისი", "ბათუმი", "ზუგდიდი"],
-    },
   ];
 
   return selects.map((select, index) => {
+    const labelCount = old_data.filter((data) => data.type === toEN(select.label)).length;
+    const optionCounts = select.options.map(option => ({
+      option,
+      count: old_data.filter(data => data.time === toEN(option) && data.type === toEN(select.label)).length
+    }));
+
+
     return (
-      <label key={index} className="block text-base font-medium text-center">
-        {select.label + " " + old_data.filter((data) => data.type === toEN(select.label)).length}
+      <label key={index} className="block text-base font-medium text-center mb-2">
+        {`${select.label} (${labelCount})`}
         <select
           onChange={(e) => onChange(select.label, e.target.value)}
           className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
         >
-          {select.options.map((option, index) => (
-            <option key={index} value={option}>
-              {option}
+          {optionCounts.map((option, index) => (
+            <option key={index} value={option.option}>
+              {`${option.option} (${option.count})`}
             </option>
           ))}
         </select>
       </label>
     );
-  });
+  }
+  );
 };
 
 
-
-const Select_EN = ({old_data, onChange }) => {
+const Select_EN = ({ old_data, onChange }) => {
   const selects = [
     {
       label: "Electric",
@@ -102,37 +105,36 @@ const Select_EN = ({old_data, onChange }) => {
       label: "Post",
       options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
     },
-    {
-      label: "city",
-      options: ["Tbilisi", "Kutaisi", "Batumi", "Zugdidi"],
-    },
   ];
 
   return selects.map((select, index) => {
+    const labelCount = old_data.filter((data) => data.type === select.label).length;
+    const optionCounts = select.options.map(option => ({
+      option,
+      count: old_data.filter(data => data.time === option && data.type === select.label).length
+    }));
+
     return (
-      <label key={index} className="block text-base font-medium text-center">
-        {select.label + " " + old_data.filter((data) => data.type === select.label).length}
+      <label key={index} className="block text-base font-medium text-center mb-2">
+        {`${select.label} (${labelCount})`}
         <select
           onChange={(e) => onChange(select.label, e.target.value)}
           className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
         >
-          {select.options.map((option, index) => (
-            <option key={index} value={option}>
-              {option}
+          {optionCounts.map((option, index) => (
+            <option key={index} value={option.option}>
+              {`${option.option} (${option.count})`}
             </option>
           ))}
         </select>
       </label>
     );
-  }
-  );
+  });
 };
 
 
 
 export default function Header( ) {
-
-  // const {}
 
   const { setFilters } = useData();
 
@@ -151,16 +153,16 @@ export default function Header( ) {
     updateData(data);
   };
 
-  const handleInputChange = (key, value) => {
-    console.log(key, value);
+  const handleInputChange = (type_val, time_val) => {
     if(lang == "GE")
-    {
-        key = toEN(key);
-        value = toEN(value);
-        key = key.toLowerCase();
-    }
-    if(value === "Select Region" || value === "Select City" ) value = "";
-    setFilters((prev) => ({ ...prev, [key]: value }));
+      {
+        type_val = toEN(type_val);
+        time_val = toEN(time_val);
+      }
+    let key_1 = "type";
+    let key_2 = "time";
+
+    setFilters((filters) => ({ ...filters, [key_1]: type_val, [key_2]: time_val }));
 }
 
   const [isDarkMode, setIsDarkMode] = useState(false);

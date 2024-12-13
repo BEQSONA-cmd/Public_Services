@@ -1,11 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import DataTable from "@/components/Body/DataTable";
 import { useLanguage } from "@/components/contexts/LanguageContext.js";
 import FilterContainer from "@/components/Body/FilterContainer";
-import { useData } from "@/components/contexts/DataContext.js";
-
 
 export default function Home() 
 {
