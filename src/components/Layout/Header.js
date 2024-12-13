@@ -68,7 +68,7 @@ const Select_GE = ({ old_data, onChange }) => {
 
 
     return (
-      <label key={index} className="block text-base font-medium text-center mb-2">
+      <label key={index} className="block text-sm font-medium text-center mb-2">
         {`${select.label} (${labelCount})`}
         <select
           onChange={(e) => onChange(select.label, e.target.value)}
@@ -115,7 +115,7 @@ const Select_EN = ({ old_data, onChange }) => {
     }));
 
     return (
-      <label key={index} className="block text-base font-medium text-center mb-2">
+      <label key={index} className="block text-sm font-medium text-center mb-2">
         {`${select.label} (${labelCount})`}
         <select
           onChange={(e) => onChange(select.label, e.target.value)}
