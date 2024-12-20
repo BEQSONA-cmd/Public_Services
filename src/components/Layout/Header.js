@@ -72,7 +72,7 @@ const Select_GE = ({ old_data, onChange }) => {
         {`${select.label} (${labelCount})`}
         <select
           onChange={(e) => onChange(select.label, e.target.value)}
-          className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
+          className="w-full h-800 px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
         >
           {optionCounts.map((option, index) => (
             <option key={index} value={option.option}>
@@ -117,7 +117,7 @@ const Select_EN = ({ old_data, onChange }) => {
     return (
       <label key={index} className="block text-sm font-medium text-center mb-2">
         {`${select.label} (${labelCount})`}
-        <select
+        <select 
           onChange={(e) => onChange(select.label, e.target.value)}
           className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
         >

@@ -56,6 +56,16 @@ const Inputs_GE = ({onChange}) => {
                 "ფოსტა 'აქცია'",
             ],
         },
+        {
+            label: "კურიერი",
+            type: "select",
+            options: [
+                "აირჩიე კურიერი",
+                "კურიერი 1",
+                "კურიერი 2",
+                "კურიერი 3",
+            ],
+        },
     ];
 
     return inputs.map((input, index) => {
@@ -144,6 +154,16 @@ const Inputs_EN = ({onChange}) => {
             "Post 'Office'",
         ],
     },
+    {
+        label: "Curier",
+        type: "select",
+        options: [
+            "Select Curier",
+            "Curier 1",
+            "Curier 2",
+            "Curier 3",
+        ]
+    },
   ];
 
   return inputs.map((input, index) => {
@@ -211,7 +231,7 @@ export default function FilterContainer({ lang })
               &#9881;
             </button>
           </div>
-          <form className="grid grid-cols-7 gap-4">
+          <form className="grid grid-cols-8 gap-4">
                 {lang === "EN" ? 
                 <Inputs_EN onChange={handleInputChange} /> : <Inputs_GE onChange={handleInputChange} 
                 />}
