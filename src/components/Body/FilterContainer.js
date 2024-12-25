@@ -72,7 +72,7 @@ const Inputs_GE = ({onChange}) => {
             
             if(input.type === "select"){
                 return (
-                    <label key={index} className="block text-sm font-medium">
+                    <label key={index} className="block text-xs font-medium">
                         {input.label}
                         <select
                             onChange={(e) => onChange(input.label.toLowerCase().replace(" ","_"), e.target.value)}
@@ -87,7 +87,7 @@ const Inputs_GE = ({onChange}) => {
             }
     
             return (
-                <label key={index} className="block text-sm font-medium">
+                <label key={index} className="block text-xs font-medium">
                     {input.label}
                     <input
                         onChange={(e) => onChange(input.label.toLowerCase().replace(" ","_"), e.target.value)}
@@ -170,7 +170,7 @@ const Inputs_EN = ({onChange}) => {
 
       if(input.type === "select"){
           return (
-              <label key={index} className="block text-sm font-medium">
+              <label key={index} className="block text-xs font-medium">
                   {input.label}
                   <select
                       onChange={(e) => onChange(input.label.toLowerCase().replace(" ","_"), e.target.value)}
@@ -185,7 +185,7 @@ const Inputs_EN = ({onChange}) => {
       }
 
       return (
-          <label key={index} className="block text-sm font-medium">
+          <label key={index} className="block text-xs font-medium">
               {input.label}
               <input
                   onChange={(e) => onChange(input.label.toLowerCase().replace(" ","_"), e.target.value)}
@@ -220,7 +220,7 @@ export default function FilterContainer({ lang })
 
   return (
       <section className="w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-          <h2 className="text-lg font-bold mb-4">
+          <h2 className="text-sm font-bold mb-4">
                 {lang === "EN" ? "Filter" : "ფილტრი"}
           </h2>
           <div className="relative">
