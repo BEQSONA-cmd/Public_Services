@@ -260,7 +260,7 @@ export default function FilterModal({ isModalOpen, closeFilterModal , lang }) {
         >
             <div className="relative bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-2xl">
                 <button
-                    className="absolute top-2 right-4 text-gray-500 hover:text-gray-800 dark:hover:text-gray-300"
+                    className="text-2xl absolute top-2 right-4 text-gray-500 hover:text-gray-800 dark:hover:text-gray-300"
                     onClick={closeFilterModal}
                     id="closeModal"
                 >

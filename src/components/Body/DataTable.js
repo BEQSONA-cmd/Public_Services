@@ -330,6 +330,7 @@ export default function DataTable({ lang }) {
                     alert("Job created!");
                     setSelectedItems([]);
                     setIsModalOpen(false);
+                    lang;
                 }}
                 items={selectedItems}
             />
