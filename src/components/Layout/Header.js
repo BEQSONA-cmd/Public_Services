@@ -39,7 +39,7 @@ function Generate_Data(num)
   return data;
 }
 
-const Select_GE = ({ old_data, onChange }) => {
+const Select_GE = ({ old_data, onChange, isDarkMode }) => {
   const selects = [
     {
       label: "ელექტრონული",
@@ -75,7 +75,11 @@ const Select_GE = ({ old_data, onChange }) => {
             <button 
               key={index}
               onClick={() => onChange(select.label, option.option)}
-              className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded"
+              className={`font-bold py-2 px-4 rounded ${
+                isDarkMode 
+                  ? 'bg-gray-700 hover:bg-gray-600 text-gray-300' 
+                  : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+              }`}
               >
               {`${option.option} (${option.count})`}
             </button>
@@ -87,8 +91,7 @@ const Select_GE = ({ old_data, onChange }) => {
   );
 };
 
-
-const Select_EN = ({ old_data, onChange }) => {
+const Select_EN = ({ old_data, onChange, isDarkMode }) => {
   const selects = [
     {
       label: "Electric",
@@ -123,7 +126,11 @@ const Select_EN = ({ old_data, onChange }) => {
             <button 
               key={index}
               onClick={() => onChange(select.label, option.option)}
-              className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded"
+              className={`font-bold py-2 px-4 rounded ${
+                isDarkMode 
+                  ? 'bg-gray-700 hover:bg-gray-600 text-gray-300' 
+                  : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
+              }`}
               >
               {`${option.option} (${option.count})`}
             </button>
@@ -133,7 +140,6 @@ const Select_EN = ({ old_data, onChange }) => {
     );
   });
 };
-
 
 
 export default function Header( ) {
@@ -193,8 +199,8 @@ export default function Header( ) {
         </div>
         <div className="text-xl flex gap-4">
           {lang === "EN" ? <
-            Select_EN old_data={old_data} onChange={handleInputChange} /> :
-            <Select_GE old_data={old_data} onChange={handleInputChange} />
+            Select_EN old_data={old_data} onChange={handleInputChange} isDarkMode={isDarkMode} /> :
+            <Select_GE old_data={old_data} onChange={handleInputChange} isDarkMode={isDarkMode} />
           }
         </div>
         <div className="relative flex gap-4">
