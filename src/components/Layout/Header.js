@@ -70,7 +70,7 @@ const Select_GE = ({ old_data, onChange, isDarkMode }) => {
 
         return (
           <div key={index}>
-            <label className="block text-lg font-medium text-center mb-1">
+            <label className="block text-sm font-medium text-center mb-1">
               {select.label} ({labelCount})
             </label>
             <div className="flex flex-wrap justify-center gap-2">
@@ -78,8 +78,8 @@ const Select_GE = ({ old_data, onChange, isDarkMode }) => {
                 <button
                   key={optionIndex}
                   onClick={() => onChange(select.label, option)}
-                  className={`text-sm font-bold py-2 px-4 rounded transform transition-transform duration-200 ${
-                    isDarkMode
+                  className={`text-xs font-bold py-2 px-4 rounded transform transition-transform duration-200 ${
+                    isDarkMode  
                       ? 'bg-gray-700 hover:bg-gray-600 text-gray-300 hover:scale-105'
                       : 'bg-gray-300 hover:bg-gray-400 text-gray-700 hover:scale-105'
                   }`}
@@ -127,7 +127,7 @@ const Select_EN = ({ old_data, onChange, isDarkMode }) => {
 
         return (
           <div key={index}>
-            <label className="block text-lg font-medium text-center mb-1">
+            <label className="block text-sm font-medium text-center mb-1">
               {select.label} ({labelCount})
             </label>
             <div className="flex flex-wrap justify-center gap-2">
@@ -135,7 +135,7 @@ const Select_EN = ({ old_data, onChange, isDarkMode }) => {
                 <button
                   key={optionIndex}
                   onClick={() => onChange(select.label, option)}
-                  className={`text-sm font-bold py-2 px-4 rounded transform transition-transform duration-200 ${
+                  className={`text-xs font-bold py-2 px-4 rounded transform transition-transform duration-200 ${
                     isDarkMode
                       ? 'bg-gray-700 hover:bg-gray-600 text-gray-300 hover:scale-105'
                       : 'bg-gray-300 hover:bg-gray-400 text-gray-700 hover:scale-105'
@@ -158,7 +158,8 @@ export default function Header( ) {
 
   const { updateData } = useData();
   const { lang, toggleLanguage } = useLanguage();
-  const [numRecords, setNumRecords] = useState(0);
+  // const [numRecords, setNumRecords] = useState(0);
+  const numRecords = 300;
 
   const old_data = useData().data;
   const handleGenerateData = () => {
@@ -204,33 +205,31 @@ export default function Header( ) {
         <div className="flex items-center">
           <a href="/" className="flex items-center space-x-2">
           {/* 1772 x 526 */}
-            <img src="/image.png" alt="Logo" className="h-32 object-contain max-w-full" />
+            <img src="/image.png" alt="Logo" className="h-24 object-contain max-w-full" />
           </a>
         </div>
-        <div className="text-xl flex gap-4">
+        <div className="flex gap-2">
           {lang === "EN" ? <
             Select_EN old_data={old_data} onChange={handleInputChange} isDarkMode={isDarkMode} /> :
             <Select_GE old_data={old_data} onChange={handleInputChange} isDarkMode={isDarkMode} />
           }
         </div>
-        <div className="relative flex gap-4">
-          <div className="flex items-center gap-2">
-          </div>
-          <div className="flex items-center gap-2">
-            <input
+        <div className="relative flex gap-2 text-xs">
+          {/* <div className="flex items-center gap-2"> */}
+            {/* <input
               type="text"
               value={numRecords}
               onChange={(e) => setNumRecords(e.target.value)}
               placeholder={lang === "EN" ? "Number" : "რაოდენობა"}
               className="w-28 px-4 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
-            />
+            /> */}
             <button
               onClick={handleGenerateData}
               className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transform hover:scale-105 transition duration-300"
             >
               {lang === "EN" ? "Generate" : "შექმნა"}
             </button>
-          </div>
+          {/* </div> */}
           <button
             onClick={toggleLanguage}
             className="bg-purple-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md hover:bg-purple-700 transform hover:scale-105 transition duration-300"
