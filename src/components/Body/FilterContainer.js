@@ -218,29 +218,32 @@ export default function FilterContainer({ lang })
       setFilters((prev) => ({ ...prev, [key]: value }));
   }
 
-  return (
-      <section className="w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-          <h2 className="text-sm font-bold mb-4">
-                {lang === "EN" ? "Filter" : "ფილტრი"}
-          </h2>
-          <div className="relative">
-            <button
-              onClick={openFilterModal}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 dark:text-gray-400"
-            >
-              &#9881;
-            </button>
-          </div>
-          <form className="grid grid-cols-8 gap-4">
-                {lang === "EN" ? 
-                <Inputs_EN onChange={handleInputChange} /> : <Inputs_GE onChange={handleInputChange} 
-                />}
-          </form>
-          <FilterModal
+    return (
+    <section className="w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+        <div className="flex justify-between items-center mb-4">
+        <h2 className="text-sm font-bold">
+        <button
+            onClick={openFilterModal}
+            className="font-bold transition-transform transform hover:scale-105"
+        >
+            <span className="mr-2">{lang === "EN" ? "Filter" : "ფილტრი"}</span>
+            <div className="inline-block text-lg">
+                &#8801;
+            </div>
+                
+        </button>
+        </h2>
+        </div>
+        <form className="grid grid-cols-8 gap-4">
+        {lang === "EN" ? 
+        <Inputs_EN onChange={handleInputChange} /> : <Inputs_GE onChange={handleInputChange} 
+        />}
+        </form>
+        <FilterModal
         isModalOpen={isModalOpen}
         closeFilterModal={closeFilterModal}
         lang={lang}
-      />
-      </section>
-  );
+        />
+    </section>
+    );
 }

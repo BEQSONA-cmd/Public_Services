@@ -170,7 +170,7 @@ export default function DataTable({ lang }) {
         <section className="w-full overflow-x-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
             <table className="w-full table-auto border-collapse mb-4">
                 <thead>
-                    <tr className="bg-gray-100 dark:bg-gray-700">
+                    <tr className="text-sm bg-gray-100 dark:bg-gray-700">
                         {lang === "EN" ? columns_EN() : columns_GE()}
                     </tr>
                 </thead>
@@ -186,7 +186,7 @@ export default function DataTable({ lang }) {
                                 <tr>
                                     <td
                                         colSpan={8}
-                                        className="px-4 py-2 text-lg font-bold text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-800"
+                                        className="text-sm px-4 py-2 font-bold text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-800"
                                     >
                                         <div className="flex justify-between">
                                             <span>{lang == "EN" ? time : times_GE[times_EN.indexOf(time)]}</span>
@@ -204,13 +204,13 @@ export default function DataTable({ lang }) {
                                                 : "bg-white dark:bg-gray-800"
                                         }`}
                                     >
-                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                        <td className="text-xs px-4 py-2 border dark:border-gray-700">
                                             {item.recieve}
                                         </td>
-                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                        <td className="text-xs px-4 py-2 border dark:border-gray-700">
                                             {item.sent}
                                         </td>
-                                        <td className="px-4 py-2 border dark:border-gray-700 relative">
+                                        <td className="text-xs px-4 py-2 border dark:border-gray-700 relative">
                                             {item.document_number}
                                             <button
                                                 className="absolute right-2 top-1/2 transform -translate-y-1/2 px-2 py-1 text-black rounded"
@@ -219,19 +219,19 @@ export default function DataTable({ lang }) {
                                                 <FaRegCopy size={20} />
                                             </button>
                                         </td>
-                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                        <td className="text-xs px-4 py-2 border dark:border-gray-700">
                                             {item.private_number}
                                         </td>
-                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                        <td className="text-xs px-4 py-2 border dark:border-gray-700">
                                             {item.surname}
                                         </td>
-                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                        <td className="text-xs px-4 py-2 border dark:border-gray-700">
                                             {item.name}
                                         </td>
-                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                        <td className="text-xs px-4 py-2 border dark:border-gray-700">
                                             {lang === "EN" ? item.city : toGE(item.city)}
                                         </td>
-                                        <td className="px-4 py-2 border dark:border-gray-700">
+                                        <td className="text-xs px-4 py-2 border dark:border-gray-700">
                                             {lang === "EN" ? item.status : toGE(item.status)}
                                         </td>
                                     </tr>
