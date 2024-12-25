@@ -100,6 +100,40 @@ const times_GE = ["0 - დღიანი", "1 - დღიანი", "3 - დ�
 
 const rowsPerPage = 24;
 const maxPageButtons = 10;
+
+const Modal = ({ isOpen, onClose, onConfirm, items }) => {
+    if (!isOpen) return null;
+
+    return (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center">
+            <div className="bg-white p-6 rounded-lg shadow-md w-96">
+                <h2 className="text-lg font-bold mb-4">Confirm Selection</h2>
+                <p className="text-sm mb-4">Are these the correct items you copied?</p>
+                <ul className="text-sm list-disc pl-5 mb-4">
+                    {items.map((item, index) => (
+                        <li key={index}>{item}</li>
+                    ))}
+                </ul>
+                <div className="flex justify-end space-x-2">
+                    <button
+                        className="px-4 py-2 bg-red-500 text-white rounded"
+                        onClick={onClose}
+                    >
+                        Cancel
+                    </button>
+                    <button
+                        className="px-4 py-2 bg-green-500 text-white rounded"
+                        onClick={onConfirm}
+                    >
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+
 export default function DataTable({ lang }) {
     
     const { filteredData:data } = useData();
@@ -158,13 +192,32 @@ export default function DataTable({ lang }) {
 
     const handleCopy = (text, documentId) => {
         navigator.clipboard.writeText(text).then(() => {
-            // alert('Copied to clipboard');
             setToggledRows((prev) => ({
                 ...prev,
                 [documentId]: !prev[documentId],
             }));
+            setSelectedItems((prev) =>
+                prev.includes(text) ? prev : [...prev, text]
+            );
         });
     };
+    
+
+    const [selectedItems, setSelectedItems] = useState([]);
+    
+    const handleCreateJob = () => {
+        const greenItems = Object.keys(toggledRows).filter((documentId) => toggledRows[documentId]);
+    
+        if (greenItems.length > 0) {
+            setSelectedItems(greenItems);
+            setIsModalOpen(true);
+        } else {
+            alert("No green items selected.");
+        }
+    };
+    
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
 
     return (
         <section className="w-full overflow-x-auto bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
@@ -243,53 +296,73 @@ export default function DataTable({ lang }) {
             </table>
 
             {/* Pagination Controls */}
-            <div className="flex justify-center mt-4">
-                {hasPreviousGroup && (
+            <div className="relative mt-4 flex items-center">
+                <div className="flex justify-center w-full">
+                    {hasPreviousGroup && (
+                        <button
+                            className="mx-1 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                            onClick={() => setCurrentPage(1)}
+                        >
+                            1
+                        </button>
+                    )}
+                    {hasPreviousGroup && (
+                        <button
+                            className="mx-1 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                            onClick={() => setCurrentPage((prev) => Math.max(prev - maxPageButtons, 1))}
+                        >
+                            {"<<"}
+                        </button>
+                    )}
+                    {buttons.map((page) => (
+                        <button
+                            key={page}
+                            className={`mx-1 px-3 py-1 rounded-md ${
+                                currentPage === page
+                                    ? "bg-blue-500 text-white"
+                                    : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                            }`}
+                            onClick={() => setCurrentPage(page)}
+                        >
+                            {page}
+                        </button>
+                    ))}
+                    {hasNextGroup && (
+                        <button
+                            className="mx-1 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                            onClick={() => setCurrentPage((prev) => Math.min(prev + maxPageButtons, totalPages))}
+                        >
+                            {">>"}
+                        </button>
+                    )}
+                    {hasNextGroup && (
+                        <button
+                            className="mx-1 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                            onClick={() => setCurrentPage(totalPages)}
+                        >
+                            {totalPages}
+                        </button>
+                    )}
+                </div>
+                <div className="absolute right-0">
                     <button
-                        className="mx-1 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-                        onClick={() => setCurrentPage(1)}
+                        className="font-bold py-2 px-4 rounded bg-green-300 hover:bg-green-400 transition-transform transform hover:scale-105"
+                        onClick={handleCreateJob}
                     >
-                        1
+                        {lang === "EN" ? "Create Job" : "ჯობის შექმნა"}
                     </button>
-                )}
-                {hasPreviousGroup && (
-                    <button
-                        className="mx-1 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-                        onClick={() => setCurrentPage((prev) => Math.max(prev - maxPageButtons, 1))}
-                    >
-                        {"<<"}
-                    </button>
-                )}
-                {buttons.map((page) => (
-                    <button
-                        key={page}
-                        className={`mx-1 px-3 py-1 rounded-md ${
-                            currentPage === page
-                                ? "bg-blue-500 text-white"
-                                : "bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-                        }`}
-                        onClick={() => setCurrentPage(page)}
-                    >
-                        {page}
-                    </button>
-                ))}
-                {hasNextGroup && (
-                    <button
-                        className="mx-1 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-                        onClick={() => setCurrentPage((prev) => Math.min(prev + maxPageButtons, totalPages))}
-                    >
-                        {">>"}
-                    </button>
-                )}
-                {hasNextGroup && (
-                    <button
-                        className="mx-1 px-3 py-1 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
-                        onClick={() => setCurrentPage(totalPages)}
-                    >
-                        {totalPages}
-                    </button>
-                )}
+                </div>
             </div>
+            <Modal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                onConfirm={() => {
+                    alert("Job created!");
+                    setSelectedItems([]);
+                    setIsModalOpen(false);
+                }}
+                items={selectedItems}
+            />
         </section>
     );
 }
