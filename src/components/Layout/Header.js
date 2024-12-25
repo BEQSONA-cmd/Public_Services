@@ -59,37 +59,42 @@ const Select_GE = ({ old_data, onChange, isDarkMode }) => {
     },
   ];
 
-  return selects.map((select, index) => {
-    const labelCount = old_data.filter((data) => data.type === toEN(select.label)).length;
-    const optionCounts = select.options.map(option => ({
-      option,
-      count: old_data.filter(data => data.time === toEN(option) && data.type === toEN(select.label)).length
-    }));
+  return (
+    <div className="flex flex-row justify-center items-center">
+      {selects.map((select, index) => {
+        const labelCount = old_data.filter((data) => data.type === toEN(select.label)).length;
+        const optionCounts = select.options.map(option => ({
+          option,
+          count: old_data.filter(data => data.time === toEN(option) && data.type === toEN(select.label)).length,
+        }));
 
-
-    return (
-      <label key={index} className="block text-sm font-medium text-center mb-2">
-        {`${select.label} (${labelCount})`}
-        <div className="flex flex-wrap justify-center gap-1">
-          {optionCounts.map((option, index) => (
-            <button 
-              key={index}
-              onClick={() => onChange(select.label, option.option)}
-              className={`font-bold py-2 px-4 rounded ${
-                isDarkMode 
-                  ? 'bg-gray-700 hover:bg-gray-600 text-gray-300' 
-                  : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
-              }`}
-              >
-              {`${option.option} (${option.count})`}
-            </button>
-          ))}
-        </div>
-      </label>
-    );
-  }
+        return (
+          <div key={index}>
+            <label className="block text-lg font-medium text-center mb-1">
+              {select.label} ({labelCount})
+            </label>
+            <div className="flex flex-wrap justify-center gap-2">
+              {optionCounts.map(({ option, count }, optionIndex) => (
+                <button
+                  key={optionIndex}
+                  onClick={() => onChange(select.label, option)}
+                  className={`text-sm font-bold py-2 px-4 rounded transform transition-transform duration-200 ${
+                    isDarkMode
+                      ? 'bg-gray-700 hover:bg-gray-600 text-gray-300 hover:scale-105'
+                      : 'bg-gray-300 hover:bg-gray-400 text-gray-700 hover:scale-105'
+                  }`}
+                >
+                  {`${option} (${count})`}
+                </button>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 };
+
 
 const Select_EN = ({ old_data, onChange, isDarkMode }) => {
   const selects = [
@@ -111,36 +116,41 @@ const Select_EN = ({ old_data, onChange, isDarkMode }) => {
     },
   ];
 
-  return selects.map((select, index) => {
-    const labelCount = old_data.filter((data) => data.type === select.label).length;
-    const optionCounts = select.options.map(option => ({
-      option,
-      count: old_data.filter(data => data.time === option && data.type === select.label).length
-    }));
+  return (
+    <div className="flex flex-row justify-center items-center">
+      {selects.map((select, index) => {
+        const labelCount = old_data.filter((data) => data.type === select.label).length;
+        const optionCounts = select.options.map(option => ({
+          option,
+          count: old_data.filter(data => data.time === option && data.type === select.label).length,
+        }));
 
-    return (
-      <label key={index} className="block text-sm font-medium text-center mb-2">
-        {`${select.label} (${labelCount})`}
-        <div className="flex flex-wrap justify-center gap-1">
-          {optionCounts.map((option, index) => (
-            <button 
-              key={index}
-              onClick={() => onChange(select.label, option.option)}
-              className={`font-bold py-2 px-4 rounded ${
-                isDarkMode 
-                  ? 'bg-gray-700 hover:bg-gray-600 text-gray-300' 
-                  : 'bg-gray-300 hover:bg-gray-400 text-gray-700'
-              }`}
-              >
-              {`${option.option} (${option.count})`}
-            </button>
-          ))}
-        </div>
-      </label>
-    );
-  });
+        return (
+          <div key={index}>
+            <label className="block text-lg font-medium text-center mb-1">
+              {select.label} ({labelCount})
+            </label>
+            <div className="flex flex-wrap justify-center gap-2">
+              {optionCounts.map(({ option, count }, optionIndex) => (
+                <button
+                  key={optionIndex}
+                  onClick={() => onChange(select.label, option)}
+                  className={`text-sm font-bold py-2 px-4 rounded transform transition-transform duration-200 ${
+                    isDarkMode
+                      ? 'bg-gray-700 hover:bg-gray-600 text-gray-300 hover:scale-105'
+                      : 'bg-gray-300 hover:bg-gray-400 text-gray-700 hover:scale-105'
+                  }`}
+                >
+                  {`${option} (${count})`}
+                </button>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
 };
-
 
 export default function Header( ) {
 
