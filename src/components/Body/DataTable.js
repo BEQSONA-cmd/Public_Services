@@ -345,12 +345,14 @@ export default function DataTable({ lang }) {
                     )}
                 </div>
                 <div className="absolute right-0">
-                    <button
-                        className="font-bold py-2 px-4 rounded bg-green-300 hover:bg-green-400 transition-transform transform hover:scale-105"
-                        onClick={handleCreateJob}
-                    >
-                        {lang === "EN" ? "Create Job" : "ჯობის შექმნა"}
-                    </button>
+                    {Object.keys(toggledRows).some((documentId) => toggledRows[documentId]) && (
+                        <button
+                            className="font-bold py-2 px-4 rounded bg-green-300 dark:bg-green-700 hover:bg-green-400 dark:hover:bg-green-600 transition-transform transform hover:scale-105"
+                            onClick={handleCreateJob}
+                        >
+                            {lang === "EN" ? "Create Job" : "ჯობის შექმნა"}
+                        </button>
+                    )}
                 </div>
             </div>
             <Modal
