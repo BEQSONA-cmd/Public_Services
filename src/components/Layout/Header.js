@@ -70,16 +70,17 @@ const Select_GE = ({ old_data, onChange }) => {
     return (
       <label key={index} className="block text-sm font-medium text-center mb-2">
         {`${select.label} (${labelCount})`}
-        <select
-          onChange={(e) => onChange(select.label, e.target.value)}
-          className="w-full h-800 px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
-        >
+        <div className="flex flex-wrap justify-center gap-1">
           {optionCounts.map((option, index) => (
-            <option key={index} value={option.option}>
+            <button 
+              key={index}
+              onClick={() => onChange(select.label, option.option)}
+              className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded"
+              >
               {`${option.option} (${option.count})`}
-            </option>
+            </button>
           ))}
-        </select>
+        </div>
       </label>
     );
   }
@@ -117,16 +118,17 @@ const Select_EN = ({ old_data, onChange }) => {
     return (
       <label key={index} className="block text-sm font-medium text-center mb-2">
         {`${select.label} (${labelCount})`}
-        <select 
-          onChange={(e) => onChange(select.label, e.target.value)}
-          className="w-full px-3 py-2 border rounded-lg dark:border-gray-700 dark:bg-gray-800"
-        >
+        <div className="flex flex-wrap justify-center gap-1">
           {optionCounts.map((option, index) => (
-            <option key={index} value={option.option}>
+            <button 
+              key={index}
+              onClick={() => onChange(select.label, option.option)}
+              className="bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded"
+              >
               {`${option.option} (${option.count})`}
-            </option>
+            </button>
           ))}
-        </select>
+        </div>
       </label>
     );
   });
@@ -185,7 +187,8 @@ export default function Header( ) {
       <header className="flex justify-between items-center bg-white dark:bg-gray-800 p-4 shadow-md w-full border-b border-black">
         <div className="flex items-center">
           <a href="/" className="flex items-center space-x-2">
-            <img src="/image.png" alt="Logo" className="h-14 w-1000" />
+          {/* 1772 x 526 */}
+            <img src="/image.png" alt="Logo" className="h-20" />
           </a>
         </div>
         <div className="text-xl flex gap-4">
