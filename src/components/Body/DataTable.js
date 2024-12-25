@@ -177,12 +177,17 @@ export default function DataTable({ lang }) {
         const greenItems = Object.keys(toggledRows).filter((documentId) => toggledRows[documentId]);
     
         if (greenItems.length > 0) {
-            setSelectedItems(greenItems);
+            const selectedData = greenItems.map((documentId) => {
+                const item = data.find((d) => d.document_number === documentId);
+                return `${item.name} ${item.surname} - (${item.document_number})`;
+            });
+            setSelectedItems(selectedData);
             setIsModalOpen(true);
         } else {
             alert("No green items selected.");
         }
     };
+    
     
     const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -327,12 +332,14 @@ export default function DataTable({ lang }) {
                 isOpen={isModalOpen}
                 onClose={() => setIsModalOpen(false)}
                 onConfirm={() => {
-                    alert("Job created!");
+                    {
+                        lang === "EN" ? alert("Job created!") : alert("ჯობი შექმნილია!");
+                    }
                     setSelectedItems([]);
                     setIsModalOpen(false);
-                    lang;
                 }}
                 items={selectedItems}
+                lang={lang}
             />
         </section>
     );

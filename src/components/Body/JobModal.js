@@ -1,6 +1,8 @@
 export default function Modal({ isOpen, onClose, onConfirm, items, lang }) {
     if (!isOpen) return null;
 
+    const isScrollable = items.length > 25;
+
     return (
         <div
             className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50"
@@ -20,7 +22,7 @@ export default function Modal({ isOpen, onClose, onConfirm, items, lang }) {
                         ? "Please confirm the following items:"
                         : "გთხოვთ დადასტუროთ შემდეგი ელემენტები:"}
                 </p>
-                <ul className="text-sm list-disc pl-5 mb-4 text-gray-800 dark:text-gray-200">
+                <ul className={`text-sm list-disc pl-5 mb-4 text-gray-800 dark:text-gray-200 ${isScrollable ? 'max-h-64 overflow-y-auto' : ''}`}>
                     {items.map((item, index) => (
                         <li key={index}>{item}</li>
                     ))}
