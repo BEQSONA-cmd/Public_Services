@@ -28,9 +28,9 @@ export function toGE (string) {
     case "Student": return "სტუდენტი";
     case "Prisoner": return "პატიმარი";
     case "Disabled Person": return "შშმ პირი";
-    case "Issued in 1 day": return "1 დღეში გასაცემი";
-      case "Issued in 3 days": return "3 დღეში გასაცემი";
-      case "Issued in 10 days": return "10 დღეში გასაცემი";
+    case "in 1 day": return "1 დღეში გასაცემი";
+      case "in 3 days": return "3 დღეში გასაცემი";
+      case "in 10 days": return "10 დღეში გასაცემი";
       case "Receive": return "მიღება";
       case "Sent": return "გაგზავნა";
       case "Document Number": return "საბუთის ნომერი";
@@ -54,11 +54,11 @@ export function toGE (string) {
       case "Temporary": return "დროებითი";
       case "Permanent": return "მუდმივი";
       case "Post": return "ფოსტა";
-      case "Issued in 0 day": return "0 - დღიანი";
-      case "Issued in 1 day": return "1 - დღიანი";
-      case "Issued in 3 days": return "3 - დღიანი";
-      case "Issued in 5 days": return "5 - დღიანი";
-      case "Issued in 10 days": return "10 - დღიანი";
+      case "in 0 day": return "0 - დღიანი";
+      case "in 1 day": return "1 - დღიანი";
+      case "in 3 days": return "3 - დღიანი";
+      case "in 5 days": return "5 - დღიანი";
+      case "in 10 days": return "10 - დღიანი";
       default: return string;
   }
 }
@@ -71,9 +71,9 @@ export function toEN (string) {
     case "სტუდენტი": return "Student";
     case "პატიმარი": return "Prisoner";
     case "შშმ პირი": return "Disabled Person";
-    case "1 დღეში გასაცემი": return "Issued in 1 day";
-      case "3 დღეში გასაცემი": return "Issued in 3 days";
-      case "10 დღეში გასაცემი": return "Issued in 10 days";
+    case "1 დღეში გასაცემი": return "in 1 day";
+      case "3 დღეში გასაცემი": return "in 3 days";
+      case "10 დღეში გასაცემი": return "in 10 days";
       case "მიღება": return "Receive";
       case "გაგზავნა": return "Sent";
       case "საბუთის ნომერი": return "Document Number";
@@ -97,11 +97,11 @@ export function toEN (string) {
       case "დროებითი": return "Temporary";
       case "მუდმივი": return "Permanent";
       case "ფოსტა": return "Post"; 
-      case "0 - დღიანი": return "Issued in 0 day";
-      case "1 - დღიანი": return "Issued in 1 day";
-      case "3 - დღიანი": return "Issued in 3 days";
-      case "5 - დღიანი": return "Issued in 5 days";
-      case "10 - დღიანი": return "Issued in 10 days";
+      case "0 - დღიანი": return "in 0 day";
+      case "1 - დღიანი": return "in 1 day";
+      case "3 - დღიანი": return "in 3 days";
+      case "5 - დღიანი": return "in 5 days";
+      case "10 - დღიანი": return "in 10 days";
       default: return string;
   }
 }

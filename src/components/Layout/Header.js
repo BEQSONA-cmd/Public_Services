@@ -6,7 +6,7 @@ import { useData } from "../contexts/DataContext.js";
 
 const cities = ["Tbilisi", "Kutaisi", "Batumi", "Zugdidi"];
 const statuses = ["", "Student", "Prisoner", "Disabled Person"];
-const times = ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"];
+const times = ["in 0 day", "in 1 day", "in 3 days", "in 5 days", "in 10 days"];
 const types = ["Electric", "Temporary", "Permanent", "Post"];
 
 import nameData from "@/assets/data.json";
@@ -100,19 +100,19 @@ const Select_EN = ({ old_data, onChange, isDarkMode }) => {
   const selects = [
     {
       label: "Electric",
-      options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
+      options: ["in 0 day", "in 1 day", "in 3 days", "in 5 days", "in 10 days"],
     },
     {
       label: "Temporary",
-      options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
+      options: ["in 0 day", "in 1 day", "in 3 days", "in 5 days", "in 10 days"],
     },
     {
       label: "Permanent",
-      options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
+      options: ["in 0 day", "in 1 day", "in 3 days", "in 5 days", "in 10 days"],
     },
     {
       label: "Post",
-      options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
+      options: ["in 0 day", "in 1 day", "in 3 days", "in 5 days", "in 10 days"],
     },
   ];
 
@@ -204,7 +204,7 @@ export default function Header( ) {
         <div className="flex items-center">
           <a href="/" className="flex items-center space-x-2">
           {/* 1772 x 526 */}
-            <img src="/image.png" alt="Logo" className="h-20" />
+            <img src="/image.png" alt="Logo" className="h-32 object-contain max-w-full" />
           </a>
         </div>
         <div className="text-xl flex gap-4">

@@ -5,19 +5,19 @@ const Select_EN = () => {
   const selects = [
     {
       label: "Electric",
-      options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
+      options: ["0 day", "1 day", "3 days", "5 days", "10 days"],
     },
     {
       label: "Temporary",
-      options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
+      options: ["0 day", "1 day", "3 days", "5 days", "10 days"],
     },
     {
       label: "Permanent",
-      options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
+      options: ["0 day", "1 day", "3 days", "5 days", "10 days"],
     },
     {
       label: "Post",
-      options: ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"],
+      options: ["0 day", "1 day", "3 days", "5 days", "10 days"],
     },
   ];
 

@@ -95,7 +95,7 @@ const columns_EN = () => {
 };
 
 
-const times_EN = ["Issued in 0 day", "Issued in 1 day", "Issued in 3 days", "Issued in 5 days", "Issued in 10 days"];
+const times_EN = ["in 0 day", "in 1 day", "in 3 days", "in 5 days", "in 10 days"];
 const times_GE = ["0 - დღიანი", "1 - დღიანი", "3 - დღიანი", "5 - დღიანი", "10 - დღიანი"];
 
 const rowsPerPage = 24;
@@ -104,11 +104,11 @@ export default function DataTable({ lang }) {
     
     const { filteredData:data } = useData();
 
-    const amount_of_0_days = data.filter((item) => item.time === "Issued in 0 day").length;
-    const amount_of_1_days = data.filter((item) => item.time === "Issued in 1 day").length;
-    const amount_of_3_days = data.filter((item) => item.time === "Issued in 3 days").length;
-    const amount_of_5_days = data.filter((item) => item.time === "Issued in 5 days").length;
-    const amount_of_10_days = data.filter((item) => item.time === "Issued in 10 days").length;
+    const amount_of_0_days = data.filter((item) => item.time === "in 0 day").length;
+    const amount_of_1_days = data.filter((item) => item.time === "in 1 day").length;
+    const amount_of_3_days = data.filter((item) => item.time === "in 3 days").length;
+    const amount_of_5_days = data.filter((item) => item.time === "in 5 days").length;
+    const amount_of_10_days = data.filter((item) => item.time === "in 10 days").length;
     let amo = [amount_of_0_days, amount_of_1_days, amount_of_3_days, amount_of_5_days, amount_of_10_days];
 
     const [currentPage, setCurrentPage] = useState(1);
