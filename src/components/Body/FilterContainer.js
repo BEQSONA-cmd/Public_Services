@@ -52,9 +52,9 @@ const Inputs_GE = ({onChange}) => {
             type: "select",
             options: [
                 "აირჩიე კურიერი",
-                "კურიერი 1",
-                "კურიერი 2",
-                "კურიერი 3",
+                "მურთაზი",
+                "ზიტო",
+                "მაქსიმე",
             ],
         },
     ];
@@ -141,9 +141,9 @@ const Inputs_EN = ({onChange}) => {
         type: "select",
         options: [
             "Select Curier",
-            "Curier 1",
-            "Curier 2",
-            "Curier 3",
+            "Murtazi",
+            "Zito",
+            "Maxime",
         ]
     },
   ];
