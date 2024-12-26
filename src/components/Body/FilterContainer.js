@@ -48,15 +48,6 @@ const Inputs_GE = ({onChange}) => {
             ],
         },
         {
-            label: "ტერიატორია",
-            type: "select",
-            options: [
-                "ადგილზე",
-                "ფოსტა",
-                "ფოსტა 'აქცია'",
-            ],
-        },
-        {
             label: "კურიერი",
             type: "select",
             options: [
@@ -145,15 +136,6 @@ const Inputs_EN = ({onChange}) => {
               "Zugdidi",
           ],
       },
-      {
-        label: "Territory",
-        type: "select",
-        options: [
-            "On Place",
-            "Post",
-            "Post 'Office'",
-        ],
-    },
     {
         label: "Curier",
         type: "select",
@@ -234,7 +216,7 @@ export default function FilterContainer({ lang })
         </button>
         </h2>
         </div>
-        <form className="grid grid-cols-8 gap-4">
+        <form className="grid grid-cols-7 gap-4">
         {lang === "EN" ? 
         <Inputs_EN onChange={handleInputChange} /> : <Inputs_GE onChange={handleInputChange} 
         />}

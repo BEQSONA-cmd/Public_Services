@@ -179,7 +179,7 @@ export default function DataTable({ lang }) {
         if (greenItems.length > 0) {
             const selectedData = greenItems.map((documentId) => {
                 const item = data.find((d) => d.document_number === documentId);
-                return `${item.name} ${item.surname} - (${item.document_number})`;
+                return `${item.name} ${item.surname} - (${item.document_number} _ ${toGE(item.city)})`;
             });
             setSelectedItems(selectedData);
             setIsModalOpen(true);
@@ -202,7 +202,9 @@ export default function DataTable({ lang }) {
                 </thead>
                 <tbody>
                     {Object.keys(groupedData).map((time) => {
-                        const dataForTime = paginatedData().filter((item) => item.time === time);
+                        const dataForTime = paginatedData()
+                        .filter((item) => item.time === time)
+                        .sort((a, b) => a.city.localeCompare(b.city));
                         if (!dataForTime.length) {
                             return null;
                         }
@@ -228,7 +230,7 @@ export default function DataTable({ lang }) {
                                             toggledRows[item.document_number]
                                                 ? "bg-green-200 dark:bg-green-700"
                                                 : "bg-white dark:bg-gray-800"
-                                        }`}
+                                        } ${index % 10 === 9 ? "font-bold" : ""}`}
                                     >
                                         <td className="text-xs px-4 py-2 border dark:border-gray-700">
                                             {item.recieve}
