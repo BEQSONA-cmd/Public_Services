@@ -202,19 +202,23 @@ export default function FilterContainer({ lang })
 
     return (
     <section className="w-full bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-        <div className="flex justify-between items-center mb-4">
-        <h2 className="text-sm font-bold">
-        <button
-            onClick={openFilterModal}
-            className="font-bold transition-transform transform hover:scale-105"
-        >
-            <span className="mr-2">{lang === "EN" ? "Filter" : "ფილტრი"}</span>
-            <div className="inline-block text-lg">
-                &#8801;
-            </div>
-                
-        </button>
-        </h2>
+        <div className="relative flex justify-between items-center mb-4">
+            <h2 className="text-sm font-bold">
+                <button
+                    onClick={openFilterModal}
+                    className="font-bold transition-transform transform hover:scale-105 border rounded py-1 px-2 border-gray-500"
+                >
+                    <span className="mr-2">{lang === "EN" ? "Filter" : "ფილტრი"}</span>
+                    <div className="inline-block text-lg">
+                        &#8801;
+                    </div>
+                </button>
+                <button
+                    className="font-bold transition-transform transform hover:scale-105 absolute right-0 border rounded py-1 px-2 border-gray-500"
+                >
+                    {lang === "EN" ? "Auto Add" : "ავტომატური დაჯობვა"}
+                </button>
+            </h2>
         </div>
         <form className="grid grid-cols-7 gap-4">
         {lang === "EN" ? 
